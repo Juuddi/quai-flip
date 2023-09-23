@@ -1,8 +1,9 @@
 import '../src/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from '@react95/core'
-import GlobalStyle from '../src/components/R95Style'
+import GlobalStyle from '../src/components/style/R95Style'
 import { createGlobalStyle } from 'styled-components'
+import { StateProvider } from '../src/utils/store'
 
 const CustomGlobalStyle = createGlobalStyle`
   body {
@@ -20,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		<ThemeProvider>
 			<GlobalStyle />
 			<CustomGlobalStyle />
-			<Component {...pageProps} />
+			<StateProvider>
+				<Component {...pageProps} />
+			</StateProvider>
 		</ThemeProvider>
 	)
 }

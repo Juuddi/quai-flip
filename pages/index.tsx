@@ -1,5 +1,9 @@
-import { Fieldset, Frame } from '@react95/core'
+import { GlobalStateContext } from '../src/utils/store'
+import { useContext } from 'react'
+import DesktopHome from '../src/views/DesktopHome'
+import DesktopLogin from '../src/views/DesktopLogin'
 
 export default function Home() {
-	return <div style={{ width: '100vw', height: '100vh' }}></div>
+	const { isConnected } = useContext(GlobalStateContext)
+	return <>{isConnected ? <DesktopHome /> : <DesktopLogin />}</>
 }

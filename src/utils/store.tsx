@@ -3,7 +3,7 @@ import React, { FC, ReactNode, createContext, useReducer } from 'react'
 interface StateData {
 	isModalOpen: boolean
 	isTableLoading: boolean
-	account: {}
+	account: { addr: string; shard: string }
 	isConnected: boolean
 	window: any
 	provider: any
@@ -15,8 +15,8 @@ interface StateData {
 	contractBalance: number
 	gameCount: number
 	gameHistory: any
-	isFlipping: {}
-	gameResult: {}
+	isFlipping: { choice: boolean; flipping: boolean; bet: number }
+	gameResult: { choice: boolean; heads: boolean; winner: boolean; message: string; prize: number }
 	txHash: string
 	isPelagus: boolean
 }
@@ -45,7 +45,7 @@ const typeStateMap = {
 const initialState = {
 	isModalOpen: false,
 	isTableLoading: true,
-	account: {},
+	account: { addr: '', shard: '' },
 	isConnected: false,
 	window: null,
 	provider: null,
@@ -57,8 +57,8 @@ const initialState = {
 	contractBalance: 0,
 	gameCount: 0,
 	gameHistory: [],
-	isFlipping: {},
-	gameResult: {},
+	isFlipping: { choice: false, flipping: false, bet: 0 },
+	gameResult: { choice: false, heads: false, winner: false, message: '', prize: 0 },
 	txHash: '',
 	isPelagus: false,
 }

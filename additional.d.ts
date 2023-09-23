@@ -1,4 +1,4 @@
-import { ExternalProvider } from 'quais/src.ts/quais/'
+import { ExternalProvider } from 'quais'
 
 declare global {
 	interface Window {
