@@ -1,5 +1,4 @@
 import { TaskBar, List } from '@react95/core'
-import { DesktopIconsProps } from '../../utils/interfaces'
 import {
 	Progman12,
 	FlyingThroughSpace100,

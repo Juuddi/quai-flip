@@ -3,7 +3,6 @@ import { useContext } from 'react'
 import { GlobalStateContext, GlobalDispatchContext } from '../utils/store'
 import { CoinSpin } from '../components/functional/GameComponents'
 import { Systray304 } from '@react95/icons'
-import { FlipStatusModalProps } from '../utils/interfaces'
 
 const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const state = useContext(GlobalStateContext)

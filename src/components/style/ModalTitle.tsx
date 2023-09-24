@@ -1,5 +1,4 @@
 import { TitleBar } from '@react95/core'
-import { ModalTitleProps } from '../../utils/interfaces'
 
 const ModalTitle = ({ title, button1, button2 }: ModalTitleProps) => {
 	return (

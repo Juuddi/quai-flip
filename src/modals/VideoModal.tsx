@@ -1,6 +1,5 @@
 import { Video, Modal } from '@react95/core'
 import { FlyingThroughSpace100 } from '@react95/icons'
-import { VideoModalProps } from '../utils/interfaces'
 
 const VideoModal = ({ setIsVideoModalOpen }: VideoModalProps) => {
 	return (

@@ -1,5 +1,4 @@
 import DesktopButton from './DesktopButton'
-import { DesktopIconsProps } from '../../../utils/interfaces'
 import {
 	Freecell1,
 	FlyingThroughSpace100,
