@@ -1,8 +1,11 @@
 /* Quai Flip Modal */
-.Progman12_32x32_1 {
-	width: 32px;
-	height: 32px;
-	background-image: url(../../node_modules/@react95/icons/png/Progman12_32x32_1.png);
+
+.main-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
+	height: 100%;
 }
 
 /* Flip Table Modal */
@@ -70,7 +73,6 @@
 .column-copy {
 	display: flex;
 	flex-direction: column;
-	border: 3px double rgb(232, 232, 232);
 	width: 100%;
 	justify-content: space-evenly;
 	padding: 16px;
@@ -91,7 +93,7 @@
 .desktop-icons-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: 30px;
 	width: 10%;
 	height: 100%;
 	align-items: center;
@@ -127,7 +129,6 @@
 /* Login Box */
 .login-outer-frame {
 	padding: 2px;
-	width: 450px;
 }
 
 .login-inner-frame {

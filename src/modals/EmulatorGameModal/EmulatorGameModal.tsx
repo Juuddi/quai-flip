@@ -6,7 +6,6 @@ const EmulatorGameModal = ({ title, icon, closeFunction, link }: EmulatorModalPr
 			title={title}
 			icon={icon}
 			width='750'
-			hasWindowButton={false}
 			closeModal={closeFunction}
 			style={{ left: '27%', top: '17%' }}
 		>

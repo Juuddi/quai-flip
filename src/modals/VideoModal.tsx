@@ -6,14 +6,12 @@ const VideoModal = ({ setIsVideoModalOpen }: VideoModalProps) => {
 		<Modal
 			title='Video Player'
 			icon={<FlyingThroughSpace100 variant='32x32_4' />}
-			width='300'
-			hasWindowButton={false}
 			closeModal={() => setIsVideoModalOpen(false)}
 			style={{ left: '10%', top: '7%' }}
 		>
 			<Video
 				src='assets/Rug.mp4'
-				style={{ width: '400px', height: '690px' }}
+				style={{ width: '400px' }}
 			/>
 		</Modal>
 	)

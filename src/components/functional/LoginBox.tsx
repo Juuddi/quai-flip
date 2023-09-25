@@ -10,7 +10,10 @@ const LoginBox = () => {
 	// eslint-disable-next-line no-unused-vars
 	const { requestAccounts } = usePelagus()
 	return (
-		<Frame className='login-outer-frame'>
+		<Frame
+			className='login-outer-frame'
+			style={{ width: '450px' }}
+		>
 			<Frame
 				boxShadow='in'
 				className='login-inner-frame'
