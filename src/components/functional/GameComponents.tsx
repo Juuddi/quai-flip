@@ -81,9 +81,10 @@ export const CoinSpin = () => {
 	return (
 		<div className='coin-spin-wrapper'>
 			<Image
-				src='assets/CoinSpin.gif'
+				src='/assets/CoinSpin.gif'
 				alt='Coin Spinning'
-				style={{ width: '60px', height: '60px' }}
+				width={60}
+				height={60}
 			/>
 		</div>
 	)

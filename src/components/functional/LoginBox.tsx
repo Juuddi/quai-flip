@@ -24,10 +24,11 @@ const LoginBox = () => {
 					button1='?'
 					button2='X'
 				/>
-				<Image
-					src='assets/logonBanner.png'
+				<img
+					src='/assets/logonBanner.png'
 					alt='login banner'
 					className='login-banner'
+					style={{ width: '100%', height: '70px' }}
 				/>
 				<div className='login-content-wrapper'>
 					<div className='login-main-wrapper'>

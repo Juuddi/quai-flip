@@ -13,11 +13,11 @@ function useProvider() {
 		// detect window.ethereum
 		const detectedProvider = await window?.ethereum
 		// detect if provider is Pelagus
-		const isPelagus = detectedProvider.isPelagus
+		const isPelagus = detectedProvider.providerInfo.label
 		if (detectedProvider) {
 			dispatch({ type: 'SET_WINDOW', payload: window })
 			dispatch({ type: 'SET_PROVIDER', payload: detectedProvider })
-			dispatch({ type: 'SET_IS_PELAGUS', payload: false })
+			dispatch({ type: 'SET_IS_PELAGUS', payload: isPelagus })
 			if (isPelagus) {
 				getAccounts()
 			} else {
