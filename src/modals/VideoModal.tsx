@@ -11,6 +11,7 @@ const VideoModal = ({ setIsVideoModalOpen }: VideoModalProps) => {
 		>
 			<Video
 				src='assets/Rug.mp4'
+				name='Rug.mp4'
 				style={{ width: '400px' }}
 			/>
 		</Modal>

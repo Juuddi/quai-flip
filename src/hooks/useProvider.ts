@@ -7,6 +7,7 @@ function useProvider() {
 	const { getAccounts } = usePelagus()
 	const dispatch = useContext(GlobalDispatchContext)
 
+	// TODO refactor once changes have been pushed to Pelagus
 	const window = detectWindow()
 	const detect = async () => {
 		// detect window.ethereum
@@ -21,7 +22,6 @@ function useProvider() {
 				getAccounts()
 			} else {
 				getAccounts()
-				console.log('HERE')
 			}
 		}
 	}

@@ -2,14 +2,14 @@ import { Input, Fieldset, Checkbox, Button } from '@react95/core'
 // import { useContract } from '../../hooks/useContract'
 import { useState } from 'react'
 
-export const Bet = (setIsFlipStatusModalOpen: Function) => {
+export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const [isHeads, setIsHeads] = useState(false)
 	const [bet, setBet] = useState(0.0001)
 	// const { play } = useContract()
 
 	const HandleFlip = () => {
 		let choice = isHeads ? 'true' : 'false'
-		setIsFlipStatusModalOpen(false)
+		setIsFlipStatusModalOpen(true)
 		// play(choice, bet, setIsFlipStatusModalOpen)
 	}
 

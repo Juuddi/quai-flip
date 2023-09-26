@@ -21,7 +21,7 @@ const QuaiFlipModal = ({ setIsModalOpen, setIsFlipStatusModalOpen }: QuaiFlipMod
 					<AccountFrame />
 					<Explainer />
 
-					<Bet {...setIsFlipStatusModalOpen} />
+					<Bet {...{ setIsFlipStatusModalOpen }} />
 				</div>
 			</Frame>
 		</Modal>

@@ -15,13 +15,13 @@ const GameTable = () => {
 
 	const forEveryObjectInArrayCreateTableRow = () => {
 		if (!isTableLoading) {
-			return gameHistory.map((item, index) => {
+			return gameHistory.map((game: game, index: number) => {
 				// Handle data formatting
-				const player = item.player.substring(0, 4) + ' ... ' + item.player.substring(37, 42)
-				const bet = ethers.utils.formatEther(item.bet.toNumber())
-				const prize = ethers.utils.formatEther(item.prize.toNumber())
+				const player = game.player.substring(0, 4) + ' ... ' + game.player.substring(37, 42)
+				const bet = ethers.utils.formatEther(Number(game.bet))
+				const prize = ethers.utils.formatEther(Number(game.prize))
 				let winner = ''
-				if (item.winner) {
+				if (game.winner) {
 					winner = 'Won'
 				} else {
 					winner = 'Lost'

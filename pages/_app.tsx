@@ -4,6 +4,7 @@ import { ThemeProvider } from '@react95/core'
 import GlobalStyle from '../src/components/style/R95Style'
 import { createGlobalStyle } from 'styled-components'
 import { StateProvider } from '../src/utils/store'
+import { useState, useEffect, Dispatch } from 'react'
 
 const CustomGlobalStyle = createGlobalStyle`
   body {
@@ -17,13 +18,16 @@ const CustomGlobalStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
+	const [theme, setTheme] = useState<ThemeName>()
+
+	console.log('theme', theme)
 	return (
-		<ThemeProvider>
-			<GlobalStyle />
-			<CustomGlobalStyle />
-			<StateProvider>
-				<Component {...pageProps} />
-			</StateProvider>
-		</ThemeProvider>
+		<StateProvider>
+			<ThemeProvider theme={theme}>
+				<GlobalStyle />
+				<CustomGlobalStyle />
+				<Component {...{ pageProps, setTheme }} />
+			</ThemeProvider>
+		</StateProvider>
 	)
 }

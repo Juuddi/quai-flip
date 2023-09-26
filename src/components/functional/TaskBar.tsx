@@ -1,4 +1,5 @@
 import { TaskBar, List } from '@react95/core'
+import { themes } from '../../utils/constants'
 import {
 	Progman12,
 	FlyingThroughSpace100,
@@ -6,6 +7,7 @@ import {
 	Mshearts1,
 	Oislb400DcScanIco,
 	Shell32167,
+	Progman24,
 } from '@react95/icons'
 
 const TaskBar95 = ({
@@ -15,7 +17,9 @@ const TaskBar95 = ({
 	setIsPokerModalOpen,
 	setIsBlackjackModalOpen,
 	setIsSlotsModalOpen,
-}: DesktopIconsProps) => {
+	setIsThemeModalOpen,
+	setTheme,
+}: TaskBarProps) => {
 	return (
 		<TaskBar
 			list={
@@ -26,17 +30,19 @@ const TaskBar95 = ({
 					>
 						QuaiFlip
 					</List.Item>
-					<List.Item
-						icon={<FlyingThroughSpace100 variant='32x32_4' />}
-						onClick={() => setIsVideoModalOpen(true)}
-					>
-						Video Player
-					</List.Item>
+
 					<List.Item
 						icon={<Progman12 variant='32x32_4' />}
 						onClick={() => setIsFlipTableModalOpen(true)}
 					>
 						Game Details
+					</List.Item>
+					<List.Divider />
+					<List.Item
+						icon={<FlyingThroughSpace100 variant='32x32_4' />}
+						onClick={() => setIsVideoModalOpen(true)}
+					>
+						Video Player
 					</List.Item>
 					<List.Item
 						icon={<Mshearts1 variant='32x32_4' />}
@@ -55,6 +61,13 @@ const TaskBar95 = ({
 						onClick={() => setIsSlotsModalOpen(true)}
 					>
 						Double-X Slots
+					</List.Item>
+					<List.Divider />
+					<List.Item
+						icon={<Progman24 variant='32x32_4' />}
+						onClick={() => setIsThemeModalOpen(true)}
+					>
+						Set Theme
 					</List.Item>
 				</List>
 			}
