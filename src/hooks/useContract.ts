@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { GlobalDispatchContext, GlobalStateContext } from '../utils/store'
 import { contractABI } from '../utils/contract'
 
-async function useContract() {
+function useContract() {
 	const { rpcUrl, contractAddress } = useContext(GlobalStateContext)
 	const dispatch = useContext(GlobalDispatchContext)
 

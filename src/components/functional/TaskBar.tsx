@@ -1,5 +1,4 @@
 import { TaskBar, List } from '@react95/core'
-import { themes } from '../../utils/constants'
 import {
 	Progman12,
 	FlyingThroughSpace100,
@@ -21,7 +20,6 @@ const TaskBar95 = ({
 	setIsSlotsModalOpen,
 	setIsThemeModalOpen,
 	setIsAccountModalOpen,
-	setTheme,
 }: TaskBarProps) => {
 	return (
 		<TaskBar

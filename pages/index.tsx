@@ -1,5 +1,5 @@
-import { GlobalStateContext } from '../src/utils/store'
 import { useContext, Dispatch, SetStateAction, useEffect } from 'react'
+import { GlobalStateContext } from '../src/utils/store'
 import DesktopHome from '../src/views/DesktopHome'
 import DesktopLogin from '../src/views/DesktopLogin'
 

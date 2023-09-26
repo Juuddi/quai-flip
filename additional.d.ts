@@ -37,7 +37,6 @@ declare global {
 		setIsSlotsModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsThemeModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsAccountModalOpen: Dispatch<SetStateAction<Boolean>>
-		setTheme: Dispatch<SetStateAction<string>>
 	}
 
 	interface QuaiFlipModalProps {

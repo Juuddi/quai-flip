@@ -1,8 +1,8 @@
-import { Frame } from '@react95/core'
-// import useFlipData from '../../../hooks/useFlipData';
 import { useContext } from 'react'
 import { GlobalStateContext } from '../../utils/store'
 import { ethers } from 'ethers'
+import { Frame } from '@react95/core'
+// import useFlipData from '../../../hooks/useFlipData';
 
 //TODO
 // Handle case where data has not loaded in yet (getGameCount and getGameEntry promises have not resolved yet)

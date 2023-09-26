@@ -1,8 +1,9 @@
+// import { useContext } from 'react'
+// import { MetaStateContext } from '../../../utils/store'
+import Image from 'next/image'
 import { Frame, Button, Input } from '@react95/core'
 import { Mprserv120 } from '@react95/icons'
 import usePelagus from '../../hooks/usePelagus'
-// import { useContext } from 'react'
-// import { MetaStateContext } from '../../../utils/store'
 import ModalTitle from '../style/ModalTitle'
 
 const LoginBox = () => {
@@ -23,7 +24,7 @@ const LoginBox = () => {
 					button1='?'
 					button2='X'
 				/>
-				<img
+				<Image
 					src='assets/logonBanner.png'
 					alt='login banner'
 					className='login-banner'

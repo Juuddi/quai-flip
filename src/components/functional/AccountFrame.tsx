@@ -1,7 +1,6 @@
+import { useContext, useEffect } from 'react'
 import { GlobalStateContext, GlobalDispatchContext } from '../../utils/store'
 import { getShardFromAddress } from 'quais/lib/utils'
-import { useContext, useEffect } from 'react'
-import { Fieldset } from '@react95/core'
 import {
 	reducetextShowSmallLength,
 	getRPCURL,

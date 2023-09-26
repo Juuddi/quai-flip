@@ -1,10 +1,10 @@
-import '../src/styles/globals.css'
+import { useState } from 'react'
+import { createGlobalStyle } from 'styled-components'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from '@react95/core'
 import GlobalStyle from '../src/components/style/R95Style'
-import { createGlobalStyle } from 'styled-components'
 import { StateProvider } from '../src/utils/store'
-import { useState, useEffect, Dispatch } from 'react'
+import '../src/styles/globals.css'
 
 const CustomGlobalStyle = createGlobalStyle`
   body {

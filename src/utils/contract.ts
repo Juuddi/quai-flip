@@ -1,8 +1,6 @@
 // TODo:
 // Fix key contract functions on Goerli (Play, deposit, data structure for getGameEntry, etc. and then redeploy and update info here)
 
-
-
 export const contractABI = [
 	{
 		anonymous: false,

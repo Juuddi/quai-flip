@@ -1,6 +1,7 @@
+import { useState } from 'react'
+import Image from 'next/image'
 import { Input, Fieldset, Checkbox, Button } from '@react95/core'
 // import { useContract } from '../../hooks/useContract'
-import { useState } from 'react'
 
 export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const [isHeads, setIsHeads] = useState(false)
@@ -9,8 +10,8 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	// const { play } = useContract()
 
 	const HandleFlip = () => {
-		let choice = isHeads ? 'true' : 'false'
 		setIsFlipStatusModalOpen(true)
+		//let choice = isHeads ? 'true' : 'false'
 		// play(choice, bet, setIsFlipStatusModalOpen)
 	}
 
@@ -79,7 +80,7 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 export const CoinSpin = () => {
 	return (
 		<div className='coin-spin-wrapper'>
-			<img
+			<Image
 				src='assets/CoinSpin.gif'
 				alt='Coin Spinning'
 				style={{ width: '60px', height: '60px' }}

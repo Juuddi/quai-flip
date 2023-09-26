@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { GlobalDispatchContext } from '../utils/store'
-import { detectWindow } from '../utils/helpers'
 import usePelagus from './usePelagus'
+import { detectWindow } from '../utils/helpers'
 
 function useProvider() {
 	const { getAccounts } = usePelagus()
