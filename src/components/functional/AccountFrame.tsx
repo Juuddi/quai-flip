@@ -44,27 +44,22 @@ const AccountFrame = () => {
 	}, [])
 
 	return (
-		<Fieldset
-			legend='Wallet Details'
-			className='frame'
-		>
-			<div className='frame-wrapper'>
-				<div className='connected'>
-					<p className='connected-text'>Connected</p>
-				</div>
+		<div className='frame-wrapper'>
+			<div className='connected'>
+				<p className='connected-text'>Connected</p>
+			</div>
 
-				<div className='column'>
-					<div className='row-wrapper'>
-						<pre>Account: </pre>
-						<p className='address-text'>{reducetextShowSmallLength(account.addr)}</p>
-					</div>
-					<div className='row-wrapper'>
-						<pre>Chain: </pre>
-						<p className='shard-text'>{getPrettyNameFromShard(account.shard)}</p>
-					</div>
+			<div className='column'>
+				<div className='row-wrapper'>
+					<pre>Account: </pre>
+					<p className='address-text'>{reducetextShowSmallLength(account.addr)}</p>
+				</div>
+				<div className='row-wrapper'>
+					<pre>Chain: </pre>
+					<p className='shard-text'>{getPrettyNameFromShard(account.shard)}</p>
 				</div>
 			</div>
-		</Fieldset>
+		</div>
 	)
 }
 

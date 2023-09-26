@@ -8,6 +8,8 @@ import {
 	Oislb400DcScanIco,
 	Shell32167,
 	Progman24,
+	Winpopup3,
+	Mshtml32546,
 } from '@react95/icons'
 
 const TaskBar95 = ({
@@ -18,12 +20,20 @@ const TaskBar95 = ({
 	setIsBlackjackModalOpen,
 	setIsSlotsModalOpen,
 	setIsThemeModalOpen,
+	setIsAccountModalOpen,
 	setTheme,
 }: TaskBarProps) => {
 	return (
 		<TaskBar
 			list={
 				<List>
+					<List.Item
+						icon={<Mshtml32546 variant='32x32_4' />}
+						onClick={() => setIsAccountModalOpen(true)}
+					>
+						Account Details
+					</List.Item>
+					<List.Divider />
 					<List.Item
 						icon={<Freecell1 variant='32x32_4' />}
 						onClick={() => setIsModalOpen(true)}
@@ -44,24 +54,30 @@ const TaskBar95 = ({
 					>
 						Video Player
 					</List.Item>
-					<List.Item
-						icon={<Mshearts1 variant='32x32_4' />}
-						onClick={() => setIsPokerModalOpen(true)}
-					>
-						Poker Galore
+					<List.Item icon={<Winpopup3 variant='32x32_4' />}>
+						<List>
+							<List.Item
+								icon={<Mshearts1 variant='32x32_4' />}
+								onClick={() => setIsPokerModalOpen(true)}
+							>
+								Poker Galore
+							</List.Item>
+							<List.Item
+								icon={<Oislb400DcScanIco variant='32x32_4' />}
+								onClick={() => setIsBlackjackModalOpen(true)}
+							>
+								Ultimate Blackjack
+							</List.Item>
+							<List.Item
+								icon={<Shell32167 variant='32x32_4' />}
+								onClick={() => setIsSlotsModalOpen(true)}
+							>
+								Double-X Slots
+							</List.Item>
+						</List>
+						Games
 					</List.Item>
-					<List.Item
-						icon={<Oislb400DcScanIco variant='32x32_4' />}
-						onClick={() => setIsBlackjackModalOpen(true)}
-					>
-						Ultimate Blackjack
-					</List.Item>
-					<List.Item
-						icon={<Shell32167 variant='32x32_4' />}
-						onClick={() => setIsSlotsModalOpen(true)}
-					>
-						Double-X Slots
-					</List.Item>
+
 					<List.Divider />
 					<List.Item
 						icon={<Progman24 variant='32x32_4' />}

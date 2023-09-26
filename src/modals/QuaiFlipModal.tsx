@@ -2,7 +2,7 @@ import { Frame, Modal } from '@react95/core'
 import { Freecell1 } from '@react95/icons'
 import AccountFrame from '../components/functional/AccountFrame'
 import { Explainer } from '../components/style/CopyComponents'
-import { Bet } from '../components/functional/GameComponents'
+import { Bet, CoinSpin } from '../components/functional/GameComponents'
 
 const QuaiFlipModal = ({ setIsModalOpen, setIsFlipStatusModalOpen }: QuaiFlipModalProps) => {
 	return (
@@ -18,9 +18,7 @@ const QuaiFlipModal = ({ setIsModalOpen, setIsFlipStatusModalOpen }: QuaiFlipMod
 				p='10px'
 			>
 				<div className='main-wrapper'>
-					<AccountFrame />
-					<Explainer />
-
+					<CoinSpin />
 					<Bet {...{ setIsFlipStatusModalOpen }} />
 				</div>
 			</Frame>

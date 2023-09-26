@@ -36,6 +36,7 @@ declare global {
 		setIsBlackjackModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsSlotsModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsThemeModalOpen: Dispatch<SetStateAction<Boolean>>
+		setIsAccountModalOpen: Dispatch<SetStateAction<Boolean>>
 		setTheme: Dispatch<SetStateAction<string>>
 	}
 
@@ -78,6 +79,10 @@ declare global {
 
 	interface PokerModalProps {
 		setIsPokerModalOpen: Dispatch<SetStateAction<Boolean>>
+	}
+
+	interface AccountModalProps {
+		setIsAccountModalOpen: Dispatch<SetStateAction<Boolean>>
 	}
 
 	type ThemeName =

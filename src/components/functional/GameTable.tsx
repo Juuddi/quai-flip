@@ -54,12 +54,12 @@ const GameTable = () => {
 			>
 				<div className='table-wrapper'>
 					<div className='title-row-wrapper'>
-						<div className='title-row'>
+						<Frame className='title-row'>
 							<p>Player</p>
 							<p>Bet (QUAI)</p>
 							<p>Prize (QUAI)</p>
 							<p>Result</p>
-						</div>
+						</Frame>
 					</div>
 					<div className='table'>{forEveryObjectInArrayCreateTableRow()}</div>
 				</div>
