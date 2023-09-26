@@ -19,8 +19,6 @@ const CustomGlobalStyle = createGlobalStyle`
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [theme, setTheme] = useState<ThemeName>()
-
-	console.log('theme', theme)
 	return (
 		<StateProvider>
 			<ThemeProvider theme={theme}>

@@ -15,7 +15,6 @@ export const getContractAddressFromShard = (shardName: string) => {
 
 export const detectWindow = () => {
 	if (typeof window === 'undefined') {
-		console.log('Window is undefined')
 		return
 	}
 	return window

@@ -6,7 +6,6 @@ import DesktopLogin from '../src/views/DesktopLogin'
 export default function Home({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) {
 	useEffect(() => {
 		const theme: any = localStorage.getItem('theme')
-		console.log(theme)
 		if (theme !== undefined) {
 			setTheme(theme)
 		} else {
