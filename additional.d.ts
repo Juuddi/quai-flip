@@ -16,6 +16,7 @@ declare global {
 		icon: JSX.Element
 		name: string
 		onClick: MouseEventHandler<HTMLButtonElement>
+		hover: string
 	}
 
 	interface DesktopIconsProps {

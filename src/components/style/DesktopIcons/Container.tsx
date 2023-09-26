@@ -27,6 +27,7 @@ const DesktopIcons = ({
 				}
 				name='QuaiFlip'
 				onClick={() => setIsModalOpen(true)}
+				hover='Quai Flip is crypto based coinflip game. Flip to win!'
 			/>
 			<DesktopButton
 				icon={
@@ -37,11 +38,13 @@ const DesktopIcons = ({
 				}
 				name='Game Details'
 				onClick={() => setIsFlipTableModalOpen(true)}
+				hover='See details from your previous flips.'
 			/>
 			<DesktopButton
 				icon={<FlyingThroughSpace100 className='desktop-icon-img' />}
 				name='Video Player'
 				onClick={() => setIsVideoModalOpen(true)}
+				hover='Play a special video from our collection.'
 			/>
 			<DesktopButton
 				icon={
@@ -52,6 +55,7 @@ const DesktopIcons = ({
 				}
 				name='Poker Galore'
 				onClick={() => setIsPokerModalOpen(true)}
+				hover='Play a vintage game of poker. (Not real money)'
 			/>
 			<DesktopButton
 				icon={
@@ -62,6 +66,7 @@ const DesktopIcons = ({
 				}
 				name='Ultimate Blackjack'
 				onClick={() => setIsBlackjackModalOpen(true)}
+				hover='Play a vintage game of blackjack. (Not real money)'
 			/>
 			<DesktopButton
 				icon={
@@ -72,6 +77,7 @@ const DesktopIcons = ({
 				}
 				name='Double-X Slots'
 				onClick={() => setIsSlotsModalOpen(true)}
+				hover='Play on a vintage slot machine. (Not real money)'
 			/>
 		</div>
 	)

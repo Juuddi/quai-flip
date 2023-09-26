@@ -41,9 +41,9 @@ const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => 
 		<Modal
 			title='Coin Flip'
 			icon={<Systray304 variant='32x32_4' />}
-			width='400'
+			width='280'
 			closeModal={() => HandleClose()}
-			style={{ left: '72%', top: '10%' }}
+			style={{ left: '56%', top: '6%' }}
 		>
 			<Frame
 				boxShadow='in'
