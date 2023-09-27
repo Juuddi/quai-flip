@@ -22,7 +22,6 @@ declare global {
 	interface DesktopIconsProps {
 		setIsModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsVideoModalOpen: Dispatch<SetStateAction<Boolean>>
-		setIsFlipTableModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsPokerModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsBlackjackModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsSlotsModalOpen: Dispatch<SetStateAction<Boolean>>
@@ -31,7 +30,6 @@ declare global {
 	interface TaskBarProps {
 		setIsModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsVideoModalOpen: Dispatch<SetStateAction<Boolean>>
-		setIsFlipTableModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsPokerModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsBlackjackModalOpen: Dispatch<SetStateAction<Boolean>>
 		setIsSlotsModalOpen: Dispatch<SetStateAction<Boolean>>

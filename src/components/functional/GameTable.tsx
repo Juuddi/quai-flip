@@ -1,8 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { GlobalStateContext } from '../../utils/store'
 import { ethers } from 'ethers'
 import { Frame } from '@react95/core'
-// import useFlipData from '../../../hooks/useFlipData';
+import useContract from '../../hooks/useContract'
 
 //TODO
 // Handle case where data has not loaded in yet (getGameCount and getGameEntry promises have not resolved yet)
@@ -11,40 +11,51 @@ import { Frame } from '@react95/core'
 
 const GameTable = () => {
 	const state = useContext(GlobalStateContext)
-	const { gameHistory, isTableLoading } = state
+	const { isTableLoading } = state
+	const { getGameCount, getBalance, play } = useContract()
+
+	async function getGameCountAndBalance() {
+		const gameCount = await getGameCount()
+		const balance = await getBalance()
+		console.log(' gameCount: ', gameCount, ' balance: ', balance)
+		return { gameCount, balance }
+	}
+
+	useEffect(() => {
+		getGameCountAndBalance()
+	}, [])
 
 	const forEveryObjectInArrayCreateTableRow = () => {
-		if (!isTableLoading) {
-			return gameHistory.map((game: game, index: number) => {
-				// Handle data formatting
-				const player = game.player.substring(0, 4) + ' ... ' + game.player.substring(37, 42)
-				const bet = ethers.utils.formatEther(Number(game.bet))
-				const prize = ethers.utils.formatEther(Number(game.prize))
-				let winner = ''
-				if (game.winner) {
-					winner = 'Won'
-				} else {
-					winner = 'Lost'
-				}
-				return (
-					<div
-						className='grid-row'
-						key={index}
-					>
-						<div>{player.toLowerCase()}</div>
-						<div>{bet}</div>
-						<div>{prize}</div>
-						<div>{winner}</div>
-					</div>
-				)
-			})
-		} else {
-			return (
-				<div className='grid-row'>
-					<div>Loading...</div>
-				</div>
-			)
-		}
+		// if (gameHistory !== undefined) {
+		// 	return gameHistory.map((game: game, index: number) => {
+		// 		// Handle data formatting
+		// 		const player = game.player.substring(0, 4) + ' ... ' + game.player.substring(37, 42)
+		// 		const bet = ethers.utils.formatEther(Number(game.bet))
+		// 		const prize = ethers.utils.formatEther(Number(game.prize))
+		// 		let winner = ''
+		// 		if (game.winner) {
+		// 			winner = 'Won'
+		// 		} else {
+		// 			winner = 'Lost'
+		// 		}
+		// 		return (
+		// 			<div
+		// 				className='grid-row'
+		// 				key={index}
+		// 			>
+		// 				<div>{player.toLowerCase()}</div>
+		// 				<div>{bet}</div>
+		// 				<div>{prize}</div>
+		// 				<div>{winner}</div>
+		// 			</div>
+		// 		)
+		// 	})
+		// } else {
+		// 	return (
+		// 		<div className='grid-row'>
+		// 			<div>Loading...</div>
+		// 		</div>
+		// 	)
 	}
 	return (
 		<Frame>
@@ -61,7 +72,7 @@ const GameTable = () => {
 							<p>Result</p>
 						</Frame>
 					</div>
-					<div className='table'>{forEveryObjectInArrayCreateTableRow()}</div>
+					{/* <div className='table'>{forEveryObjectInArrayCreateTableRow()}</div> */}
 				</div>
 			</Frame>
 		</Frame>

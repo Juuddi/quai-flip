@@ -39,6 +39,17 @@
 	gap: 10px;
 }
 
+.flip-stats-wrapper {
+	padding: 5px;
+}
+
+.flip-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
 /* Flip Status Modal */
 .spinWrapper {
 	width: 100%;

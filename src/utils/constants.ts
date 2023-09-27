@@ -28,15 +28,15 @@ export const RPCURLs = {
 
 // Explorer URLs for transaction links
 export const explorerURLs = {
-	'Cyprus-1': 'https://cyprus1.colosseum.quaiscan.io',
-	'Cyprus-2': 'https://cyprus2.colosseum.quaiscan.io',
-	'Cyprus-3': 'https://cyprus3.colosseum.quaiscan.io',
-	'Paxos-1': 'https://paxos1.colosseum.quaiscan.io',
-	'Paxos-2': 'https://paxos2.colosseum.quaiscan.io',
-	'Paxos-3': 'https://paxos3.colosseum.quaiscan.io',
-	'Hydra-1': 'https://hydra1.colosseum.quaiscan.io',
-	'Hydra-2': 'https://hydra2.colosseum.quaiscan.io',
-	'Hydra-3': 'https://hydra3.colosseum.quaiscan.io',
+	'zone-0-0': 'https://cyprus1.colosseum.quaiscan.io',
+	'zone-0-1': 'https://cyprus2.colosseum.quaiscan.io',
+	'zone-0-2': 'https://cyprus3.colosseum.quaiscan.io',
+	'zone-1-0': 'https://paxos1.colosseum.quaiscan.io',
+	'zone-1-1': 'https://paxos2.colosseum.quaiscan.io',
+	'zone-1-2': 'https://paxos3.colosseum.quaiscan.io',
+	'zone-2-0': 'https://hydra1.colosseum.quaiscan.io',
+	'zone-2-1': 'https://hydra2.colosseum.quaiscan.io',
+	'zone-2-2': 'https://hydra3.colosseum.quaiscan.io',
 }
 
 // Shard names for Quai
@@ -54,7 +54,7 @@ export const sortedQuaiShardNames = {
 
 // Contract addresses for flip contract
 export const contractAddresses = {
-	'zone-0-0': '0x0000000000000000000000000000000000000000',
+	'zone-0-0': '0x04a2a0B920466781a0057c8E84b01f413A9b267d',
 	'zone-0-1': '0x0000000000000000000000000000000000000000',
 	'zone-0-2': '0x0000000000000000000000000000000000000000',
 	'zone-1-0': '0x0000000000000000000000000000000000000000',

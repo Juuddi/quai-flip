@@ -1,4 +1,4 @@
-import { sortedQuaiShardNames, RPCURLs, contractAddresses } from './constants'
+import { sortedQuaiShardNames, RPCURLs, contractAddresses, explorerURLs } from './constants'
 
 export const getPrettyNameFromShard = (shardName: string) => {
 	return sortedQuaiShardNames[shardName as keyof typeof sortedQuaiShardNames]
@@ -11,6 +11,10 @@ export const getRPCURL = (shardName: string, environment: string) => {
 
 export const getContractAddressFromShard = (shardName: string) => {
 	return contractAddresses[shardName as keyof typeof contractAddresses]
+}
+
+export const getExplorerURL = (shardName: string) => {
+	return explorerURLs[shardName as keyof typeof explorerURLs]
 }
 
 export const detectWindow = () => {

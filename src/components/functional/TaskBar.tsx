@@ -1,6 +1,5 @@
 import { TaskBar, List } from '@react95/core'
 import {
-	Progman12,
 	FlyingThroughSpace100,
 	Freecell1,
 	Mshearts1,
@@ -14,7 +13,6 @@ import {
 const TaskBar95 = ({
 	setIsModalOpen,
 	setIsVideoModalOpen,
-	setIsFlipTableModalOpen,
 	setIsPokerModalOpen,
 	setIsBlackjackModalOpen,
 	setIsSlotsModalOpen,
@@ -37,13 +35,6 @@ const TaskBar95 = ({
 						onClick={() => setIsModalOpen(true)}
 					>
 						QuaiFlip
-					</List.Item>
-
-					<List.Item
-						icon={<Progman12 variant='32x32_4' />}
-						onClick={() => setIsFlipTableModalOpen(true)}
-					>
-						Game Details
 					</List.Item>
 					<List.Divider />
 					<List.Item

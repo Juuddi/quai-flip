@@ -11,7 +11,6 @@ import {
 const DesktopIcons = ({
 	setIsModalOpen,
 	setIsVideoModalOpen,
-	setIsFlipTableModalOpen,
 	setIsPokerModalOpen,
 	setIsBlackjackModalOpen,
 	setIsSlotsModalOpen,
@@ -28,17 +27,6 @@ const DesktopIcons = ({
 				name='QuaiFlip'
 				onClick={() => setIsModalOpen(true)}
 				hover='Quai Flip is crypto based coinflip game. Flip to win!'
-			/>
-			<DesktopButton
-				icon={
-					<Progman12
-						variant='32x32_4'
-						className='desktop-icon-img'
-					/>
-				}
-				name='Game Details'
-				onClick={() => setIsFlipTableModalOpen(true)}
-				hover='See details from your previous flips.'
 			/>
 			<DesktopButton
 				icon={<FlyingThroughSpace100 className='desktop-icon-img' />}

@@ -2,7 +2,7 @@ import { useState, Dispatch, SetStateAction } from 'react'
 import QuaiFlipModal from '../modals/QuaiFlipModal'
 import TaskBarMain from '../components/functional/TaskBar'
 import VideoModal from '../modals/VideoModal'
-import FlipTableModal from '../modals/FlipTableModal'
+// import FlipTableModal from '../modals/FlipTableModal'
 import DesktopIcons from '../components/style/DesktopIcons/Container'
 import FlipStatusModal from '../modals/FlipStatusModal'
 import ThemeModal from '../modals/ThemeModal'
@@ -11,7 +11,7 @@ import { Poker, Blackjack, Slots } from '../modals/EmulatorGameModal/index'
 
 const DesktopHome = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) => {
 	const [isModalOpen, setIsModalOpen] = useState(true)
-	const [isFlipTableModalOpen, setIsFlipTableModalOpen] = useState(true)
+	// const [isFlipTableModalOpen, setIsFlipTableModalOpen] = useState(true)
 	const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 	const [isPokerModalOpen, setIsPokerModalOpen] = useState(false)
 	const [isBlackjackModalOpen, setIsBlackjackModalOpen] = useState(false)
@@ -23,7 +23,7 @@ const DesktopHome = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> 
 	return (
 		<>
 			{isModalOpen && <QuaiFlipModal {...{ setIsModalOpen, setIsFlipStatusModalOpen }} />}
-			{isFlipTableModalOpen && <FlipTableModal {...{ setIsFlipTableModalOpen }} />}
+			{/* {isFlipTableModalOpen && <FlipTableModal {...{ setIsFlipTableModalOpen }} />} */}
 			{isVideoModalOpen && <VideoModal {...{ setIsVideoModalOpen }} />}
 			{isPokerModalOpen && <Poker {...{ setIsPokerModalOpen }} />}
 			{isBlackjackModalOpen && <Blackjack {...{ setIsBlackjackModalOpen }} />}
@@ -34,7 +34,6 @@ const DesktopHome = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> 
 			<TaskBarMain
 				{...{
 					setIsModalOpen,
-					setIsFlipTableModalOpen,
 					setIsVideoModalOpen,
 					setIsPokerModalOpen,
 					setIsBlackjackModalOpen,
@@ -47,7 +46,6 @@ const DesktopHome = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> 
 			<DesktopIcons
 				{...{
 					setIsModalOpen,
-					setIsFlipTableModalOpen,
 					setIsVideoModalOpen,
 					setIsPokerModalOpen,
 					setIsBlackjackModalOpen,

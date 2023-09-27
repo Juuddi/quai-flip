@@ -8,7 +8,7 @@ const AccountModal = ({ setIsAccountModalOpen }: AccountModalProps) => {
 			title='Account Details'
 			icon={<Mshtml32546 variant='32x32_4' />}
 			closeModal={() => setIsAccountModalOpen(false)}
-			style={{ right: '2%', top: '2%' }}
+			style={{ right: '2%', top: '2%', height: 'fit-content' }}
 		>
 			<AccountFrame />
 		</Modal>
