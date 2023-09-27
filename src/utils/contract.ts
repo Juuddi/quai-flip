@@ -1,9 +1,26 @@
 // TODo:
 // Fix key contract functions on Goerli (Play, deposit, data structure for getGameEntry, etc. and then redeploy and update info here)
 
-
-
 export const contractABI = [
+	{
+		anonymous: false,
+		inputs: [
+			{
+				indexed: true,
+				internalType: 'address',
+				name: 'previousOwner',
+				type: 'address',
+			},
+			{
+				indexed: true,
+				internalType: 'address',
+				name: 'newOwner',
+				type: 'address',
+			},
+		],
+		name: 'OwnershipTransferred',
+		type: 'event',
+	},
 	{
 		anonymous: false,
 		inputs: [
@@ -69,19 +86,6 @@ export const contractABI = [
 	},
 	{
 		inputs: [],
-		name: 'getGameCount',
-		outputs: [
-			{
-				internalType: 'uint256',
-				name: '',
-				type: 'uint256',
-			},
-		],
-		stateMutability: 'view',
-		type: 'function',
-	},
-	{
-		inputs: [],
 		name: 'maxBet',
 		outputs: [
 			{
@@ -105,5 +109,91 @@ export const contractABI = [
 		],
 		stateMutability: 'view',
 		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'owner',
+		outputs: [
+			{
+				internalType: 'address',
+				name: '',
+				type: 'address',
+			},
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'payPercentage',
+		outputs: [
+			{
+				internalType: 'uint256',
+				name: '',
+				type: 'uint256',
+			},
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'renounceOwnership',
+		outputs: [],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		inputs: [
+			{
+				internalType: 'uint256',
+				name: '_maxBet',
+				type: 'uint256',
+			},
+			{
+				internalType: 'uint256',
+				name: '_minBet',
+				type: 'uint256',
+			},
+			{
+				internalType: 'uint32',
+				name: '_payPercentage',
+				type: 'uint32',
+			},
+		],
+		name: 'setBetLimits',
+		outputs: [],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'totalFlips',
+		outputs: [
+			{
+				internalType: 'uint256',
+				name: '',
+				type: 'uint256',
+			},
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [
+			{
+				internalType: 'address',
+				name: 'newOwner',
+				type: 'address',
+			},
+		],
+		name: 'transferOwnership',
+		outputs: [],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		stateMutability: 'payable',
+		type: 'receive',
 	},
 ]

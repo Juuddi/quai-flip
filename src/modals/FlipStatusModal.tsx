@@ -1,13 +1,16 @@
-import { Modal, Frame } from '@react95/core'
 import { useContext } from 'react'
 import { GlobalStateContext, GlobalDispatchContext } from '../utils/store'
-import { CoinSpin } from '../components/functional/GameComponents'
+import { Modal, Frame } from '@react95/core'
 import { Systray304 } from '@react95/icons'
+import { CoinSpin } from '../components/functional/GameComponents'
+import { getExplorerURL } from '../utils/helpers'
 
 const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const state = useContext(GlobalStateContext)
-	const { isFlipping, gameResult, txHash } = state
+	const { isFlipping, gameResult, txHash, account } = state
 	const dispatch = useContext(GlobalDispatchContext)
+	const explorerURL = getExplorerURL(account.shard)
+
 	var winner = ''
 	var choice = ''
 	var heads = ''
@@ -41,9 +44,9 @@ const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => 
 		<Modal
 			title='Coin Flip'
 			icon={<Systray304 variant='32x32_4' />}
-			width='400'
+			width='280'
 			closeModal={() => HandleClose()}
-			style={{ left: '72%', top: '10%' }}
+			style={{ left: '63%', top: '6%' }}
 		>
 			<Frame
 				boxShadow='in'
@@ -61,7 +64,7 @@ const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => 
 								{isFlipping.bet} QUAI bet on {choice} submitted.
 							</h1>
 							<a
-								href={`https://goerli.etherscan.io/tx/${txHash}`}
+								href={`${explorerURL}/${txHash}`}
 								target='_blank'
 								rel='noreferrer'
 							>

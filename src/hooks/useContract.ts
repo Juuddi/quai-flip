@@ -4,8 +4,8 @@ import { ethers } from 'ethers'
 import { GlobalDispatchContext, GlobalStateContext } from '../utils/store'
 import { contractABI } from '../utils/contract'
 
-async function useContract() {
-	const { rpcUrl, contractAddress } = useContext(GlobalStateContext)
+function useContract() {
+	const { rpcUrl, contractAddress, account } = useContext(GlobalStateContext)
 	const dispatch = useContext(GlobalDispatchContext)
 
 	// set contract and provider
@@ -14,62 +14,64 @@ async function useContract() {
 
 	// getBalance calls the contract's getContractBalance function and sets the contract balance in state
 	const getBalance = async () => {
+		let balance
 		await contract
 			.getContractBalance()
 			.then((res: any) => {
-				console.log('contractBalance', res)
+				const wei = quais.BigNumber.from(res._hex)
+				balance = quais.utils.formatEther(wei)
 				dispatch({
 					type: 'SET_CONTRACT_BALANCE',
-					payload: quais.utils.formatEther(res.toNumber()),
+					payload: balance,
 				})
 			})
 			.catch((err: Error) => {
 				console.error(err)
 			})
+		return balance
 	}
 
-	// getGameCount calls the contract's getGameCount function and sets the game count in state
+	// getGameCount calls the contract's totalFlips function and sets the game count in state
 	const getGameCount = async () => {
+		let gameCount
 		await contract
-			.getGameCount()
-			.catch((err: Error) => {
-				console.error(err)
-			})
+			.totalFlips()
 			.then((res: any) => {
-				const gameCountRes = res.toNumber()
-				console.log('contractBalance', gameCountRes)
-				dispatch({ type: 'SET_GAME_COUNT', payload: gameCountRes })
+				gameCount = res.toNumber()
+				dispatch({ type: 'SET_GAME_COUNT', payload: gameCount })
 			})
-	}
-
-	// getAllGames calls the contract's getAllGames function and sets the game history in state
-	const getAllGames = async () => {
-		await contract
-			.getAllGames()
 			.catch((err: Error) => {
 				console.error(err)
 			})
-			.then((res: Error) => {
-				dispatch({ type: 'SET_GAME_HISTORY', payload: res })
-				dispatch({ type: 'SET_IS_TABLE_LOADING', payload: false })
-			})
+		return gameCount
 	}
 
 	// play calls the contract's Play function and sets the tx hash in state
 	// takes in heads (boolean), bet (number), and setIsFlipStatusModalOpen (function)
 	// handles opening of the FlipStatusModal
 	const play = async (heads: boolean, bet: number, setIsFlipStatusModalOpen: any) => {
-		await contract
-			.Play(heads, { value: ethers.utils.parseEther(bet.toString()) })
-			.catch((err: Error) => {
-				console.error(err)
+		const value = ethers.utils.parseEther(bet.toString())._hex
+		const transactionData = await contract.populateTransaction.Play(heads, {
+			value: value,
+		})
+		const tx = {
+			from: account.addr,
+			to: contractAddress,
+			data: transactionData.data,
+			value: value,
+		}
+
+		await window.ethereum
+			.request({
+				method: 'eth_sendTransaction',
+				params: [tx],
 			})
 			.then((tx: any, err: Error) => {
 				if (err) {
 					console.log('TX Error:', err)
 				} else {
 					console.log('TX:', tx)
-					dispatch({ type: 'SET_TX_HASH', payload: tx.hash })
+					dispatch({ type: 'SET_TX_HASH', payload: tx })
 					dispatch({
 						type: 'SET_IS_FLIPPING',
 						payload: { flipping: true, choice: heads, bet: bet },
@@ -77,11 +79,13 @@ async function useContract() {
 					setIsFlipStatusModalOpen(true)
 				}
 			})
+			.catch((err: Error) => {
+				console.log('TX Error:', err)
+			})
 	}
 
 	return {
 		getGameCount,
-		getAllGames,
 		getBalance,
 		play,
 	}

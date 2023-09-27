@@ -9,7 +9,7 @@ const FlipTableModal = ({ setIsFlipTableModalOpen }: FlipTableModalProps) => {
 			icon={<Progman12 variant='32x32_4' />}
 			title='Game Details'
 			closeModal={() => setIsFlipTableModalOpen(false)}
-			style={{ left: '28%', top: '64%' }}
+			style={{ left: '26%', top: '62%' }}
 		>
 			<div className='game-details-wrapper'>
 				<Frame

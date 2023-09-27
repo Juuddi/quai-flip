@@ -1,16 +1,19 @@
+import { useState, useContext, useEffect } from 'react'
+import Image from 'next/image'
 import { Input, Fieldset, Checkbox, Button } from '@react95/core'
-// import { useContract } from '../../hooks/useContract'
-import { useState } from 'react'
+import { GlobalStateContext } from '../../utils/store'
+import useContract from '../../hooks/useContract'
 
-export const Bet = (setIsFlipStatusModalOpen: Function) => {
+export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const [isHeads, setIsHeads] = useState(false)
 	const [bet, setBet] = useState(0.0001)
-	// const { play } = useContract()
+	const betAmounts = [0.1, 0.5, 1, 5]
+	const { play } = useContract()
 
 	const HandleFlip = () => {
-		let choice = isHeads ? 'true' : 'false'
-		setIsFlipStatusModalOpen(false)
-		// play(choice, bet, setIsFlipStatusModalOpen)
+		setIsFlipStatusModalOpen(true)
+		// let choice = isHeads ? 'true' : 'false'
+		play(isHeads, bet, setIsFlipStatusModalOpen)
 	}
 
 	const HandleCheck = (key: any) => {
@@ -26,8 +29,8 @@ export const Bet = (setIsFlipStatusModalOpen: Function) => {
 		}
 	}
 	return (
-		<Fieldset legend='Enter Your Bet'>
-			<div className='game-bet-wrapper'>
+		<>
+			<Fieldset legend='Choose A Side'>
 				<div className='game-choice-selection-wrapper'>
 					<Checkbox
 						checked={isHeads}
@@ -40,10 +43,23 @@ export const Bet = (setIsFlipStatusModalOpen: Function) => {
 						label='Tails'
 					/>
 				</div>
+			</Fieldset>
+			<Fieldset legend='Enter Your Bet'>
 				<div className='game-input-wrapper'>
+					<div className='input-button-wrapper'>
+						{betAmounts.map((bet: number, index: number) => (
+							<Button
+								key={index}
+								className='input-button'
+								onClick={() => setBet(bet)}
+							>
+								{bet}
+							</Button>
+						))}
+					</div>
 					<Input
 						type='number'
-						placeholder='0.01'
+						placeholder='0.1'
 						className='game-bet-input'
 						value={bet}
 						onChange={(e: any) => setBet(e.target.value)}
@@ -54,22 +70,53 @@ export const Bet = (setIsFlipStatusModalOpen: Function) => {
 						className='game-bet-button'
 						onClick={HandleFlip}
 					>
-						Flip
+						<p className='text-gradient'>Flip</p>
 					</Button>
 				</div>
-			</div>
-		</Fieldset>
+			</Fieldset>
+		</>
 	)
 }
 
 export const CoinSpin = () => {
 	return (
 		<div className='coin-spin-wrapper'>
-			<img
-				src='assets/CoinSpin.gif'
+			<Image
+				src='/assets/CoinSpin.gif'
 				alt='Coin Spinning'
-				style={{ width: '60px', height: '60px' }}
+				width={60}
+				height={60}
+				priority={true}
 			/>
 		</div>
+	)
+}
+
+export const FlipStats = () => {
+	const { gameCount, contractBalance } = useContext(GlobalStateContext)
+	const { getGameCount, getBalance } = useContract()
+	async function getGameCountAndBalance() {
+		const gameCount = await getGameCount()
+		const balance = await getBalance()
+		console.log(' gameCount: ', gameCount, ' balance: ', balance)
+		return { gameCount, balance }
+	}
+
+	useEffect(() => {
+		getGameCountAndBalance()
+	}, [])
+	return (
+		<Fieldset legend='Details'>
+			<div className='flip-stats-wrapper'>
+				<div className='flip-stats'>
+					<p>
+						Coin Flips: <strong>{gameCount}</strong>
+					</p>
+					<p>
+						Contract Balance: <strong>{contractBalance} QUAI</strong>
+					</p>
+				</div>
+			</div>
+		</Fieldset>
 	)
 }

@@ -1,7 +1,7 @@
-import { Fieldset } from '@react95/core'
 import { useContext } from 'react'
-import { GlobalStateContext } from '../../utils/store'
+import { Fieldset } from '@react95/core'
 import { BsGithub } from 'react-icons/bs'
+import { GlobalStateContext } from '../../utils/store'
 
 export const Explainer = () => {
 	return (

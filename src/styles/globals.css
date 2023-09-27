@@ -1,3 +1,26 @@
+.text-gradient {
+	--bg-size: 400%;
+	--color-one: hsl(15 90% 55%);
+	--color-two: hsl(40 95% 55%);
+	background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
+		var(--bg-size) 100%;
+	color: transparent;
+	background-clip: text;
+	-webkit-background-clip: text;
+	animation: move-bg 8s infinite linear;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.boujee-text {
+		animation: move-bg 8s linear infinite;
+	}
+	@keyframes move-bg {
+		to {
+			background-position: var(--bg-size) 0;
+		}
+	}
+}
+
 /* Quai Flip Modal */
 
 .main-wrapper {
@@ -14,6 +37,17 @@
 	flex-direction: column;
 	width: 700px;
 	gap: 10px;
+}
+
+.flip-stats-wrapper {
+	padding: 5px;
+}
+
+.flip-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 /* Flip Status Modal */
@@ -39,7 +73,7 @@
 	display: grid;
 	justify-content: center;
 	align-items: center;
-	grid-template-columns: 0.5fr 1fr;
+	grid-template-rows: 0.5fr 1fr;
 }
 
 .gameResult {
@@ -141,7 +175,6 @@
 
 .login-banner {
 	margin-top: -2px;
-	height: 70px;
 }
 
 .login-content-wrapper {
@@ -225,7 +258,6 @@
 .title-row-wrapper {
 	width: 100%;
 	border-bottom: 2px solid black;
-	background-color: #c7c8ca;
 }
 
 .title-row {
@@ -242,18 +274,27 @@
 }
 
 /* Game Components */
-.game-bet-wrapper {
-	display: flex;
-	flex-direction: row;
-	padding: 10px;
-	width: full;
-	gap: 20px;
-}
 
 .game-choice-selection-wrapper {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
+	padding: 10px 0px;
+	gap: 30px;
+}
+
+.input-button-wrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0px;
 	gap: 10px;
+}
+
+.input-button {
+	width: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .game-input-wrapper {
@@ -262,6 +303,7 @@
 	gap: 10px;
 	width: 100%;
 	align-items: center;
+	padding: 10px;
 }
 
 .game-bet-input {
@@ -272,6 +314,7 @@
 
 .game-bet-button {
 	width: 70%;
+	font-size: 30px;
 }
 
 .coin-spin-wrapper {
@@ -280,6 +323,7 @@
 	width: 100%;
 	align-items: center;
 	justify-content: center;
+	padding: 5px 0px;
 }
 
 /* Alert */
@@ -344,6 +388,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
+	padding: 10px;
 }
 
 .connected {
@@ -352,6 +397,8 @@
 	padding: 2px 12px;
 	width: fit-content;
 	border: 3px double rgb(232, 232, 232);
+	width: 100%;
+	justify-content: center;
 }
 
 .connected-text {
@@ -370,11 +417,12 @@
 
 .column {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	border: 3px double rgb(232, 232, 232);
 	width: 100%;
 	justify-content: space-evenly;
 	background-color: rgb(128, 132, 128);
+	padding: 10px;
 }
 
 .row-wrapper {
