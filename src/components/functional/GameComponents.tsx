@@ -11,8 +11,6 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const { play } = useContract()
 
 	const HandleFlip = () => {
-		setIsFlipStatusModalOpen(true)
-		// let choice = isHeads ? 'true' : 'false'
 		play(isHeads, bet, setIsFlipStatusModalOpen)
 	}
 
