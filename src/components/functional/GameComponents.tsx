@@ -102,6 +102,7 @@ export const FlipStats = () => {
 
 	useEffect(() => {
 		getGameCountAndBalance()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	return (
 		<Fieldset legend='Details'>

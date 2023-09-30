@@ -10,9 +10,7 @@ function useContract() {
 
 	// set contract and provider
 	const jsonprovider = new quais.providers.JsonRpcProvider(rpcUrl, 'any')
-	const wsprovider = new quais.providers.WebSocketProvider(wsUrl)
 	const contract = new quais.Contract(contractAddress, contractABI, jsonprovider)
-	const wsContract = new quais.Contract(contractAddress, contractABI, wsprovider)
 
 	// getBalance calls the contract's getContractBalance function and sets the contract balance in state
 	const getBalance = async () => {
@@ -48,6 +46,32 @@ function useContract() {
 		return gameCount
 	}
 
+	const getReceipt = async (txhash: string, setGameResult: Dispatch<SetStateAction<any>>) => {
+		console.log('waiting forreceipt')
+		try {
+			const receipt = await jsonprovider.getTransactionReceipt(txhash)
+			console.log(receipt)
+		} catch (err: any) {
+			console.log(err)
+		}
+		setTimeout(async () => {
+			try {
+				const receipt = await jsonprovider.waitForTransaction(txhash, 1, 10000)
+				console.log(receipt)
+				const decodedLogs = quais.utils.defaultAbiCoder.decode(
+					['string', 'address', 'uint', 'bool', 'bool'],
+					receipt.logs[0].data
+				)
+				console.log(decodedLogs)
+				setGameResult(decodedLogs)
+				dispatch({ type: 'SET_IS_FLIPPING', payload: { flipping: false, choice: false, bet: 0 } })
+			} catch (err: any) {
+				console.log(err)
+			}
+		}, 3000)
+		console.log('receipt received')
+	}
+
 	// play calls the contract's Play function and sets the tx hash in state
 	// takes in heads (boolean), bet (number), and setIsFlipStatusModalOpen (function)
 	// handles opening of the FlipStatusModal
@@ -70,8 +94,7 @@ function useContract() {
 			})
 			.then((res: any, err: Error) => {
 				if (typeof res === 'string') {
-					console.log('Transaction Hash:', res)
-					dispatch({ type: 'SET_TX_HASH', payload: tx })
+					dispatch({ type: 'SET_TX_HASH', payload: res })
 					dispatch({
 						type: 'SET_IS_FLIPPING',
 						payload: { flipping: true, choice: heads, bet: bet },
@@ -88,44 +111,11 @@ function useContract() {
 			})
 	}
 
-	const filterOn = (bettor: string, setGameResult: Dispatch<SetStateAction<any>>) => {
-		// const filter = wsContract.filters.Status(null, bettor, null, null, null)
-		console.log('filterOn')
-		const handleStatusEvent = (
-			message: string,
-			player: string,
-			prize: any,
-			winner: string,
-			heads: boolean
-		) => {
-			const prizeString = quais.utils.formatEther(prize.toNumber())
-			const newGameResult = {
-				message: message,
-				player: player,
-				prize: prizeString,
-				winner: winner,
-				heads: heads,
-			}
-			setGameResult(newGameResult)
-			console.log('GameResult: ', newGameResult)
-			dispatch({
-				type: 'SET_IS_FLIPPING',
-				payload: { flipping: false, choice: false, bet: 0 },
-			})
-			dispatch({ type: 'GAME_RESULT', payload: newGameResult })
-			console.log('filterOff')
-			wsContract.off('Status', handleStatusEvent)
-		}
-		wsContract.on('Status', handleStatusEvent)
-
-		return () => {}
-	}
-
 	return {
 		getGameCount,
 		getBalance,
 		play,
-		filterOn,
+		getReceipt,
 	}
 }
 

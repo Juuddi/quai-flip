@@ -18,12 +18,12 @@ const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => 
 		winner: '',
 		heads: false,
 	})
-	const { filterOn } = useContract()
+	const { getReceipt } = useContract()
 
 	useEffect(() => {
-		console.log('IN USE EFFECT')
-		const cleanup = filterOn(account.addr, setGameResult)
-		return cleanup
+		console.log('In Use Effect')
+		getReceipt(txHash, setGameResult)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	var winner = ''
