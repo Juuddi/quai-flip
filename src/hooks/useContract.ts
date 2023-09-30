@@ -1,16 +1,16 @@
-import { useContext } from 'react'
+import { Dispatch, useContext, SetStateAction } from 'react'
 import { quais } from 'quais'
 import { ethers } from 'ethers'
 import { GlobalDispatchContext, GlobalStateContext } from '../utils/store'
 import { contractABI } from '../utils/contract'
 
 function useContract() {
-	const { rpcUrl, contractAddress, account } = useContext(GlobalStateContext)
+	const { rpcUrl, contractAddress, account, wsUrl } = useContext(GlobalStateContext)
 	const dispatch = useContext(GlobalDispatchContext)
 
 	// set contract and provider
-	const provider = new quais.providers.JsonRpcProvider(rpcUrl, 'any')
-	const contract = new quais.Contract(contractAddress, contractABI, provider)
+	const jsonprovider = new quais.providers.JsonRpcProvider(rpcUrl, 'any')
+	const contract = new quais.Contract(contractAddress, contractABI, jsonprovider)
 
 	// getBalance calls the contract's getContractBalance function and sets the contract balance in state
 	const getBalance = async () => {
@@ -46,6 +46,32 @@ function useContract() {
 		return gameCount
 	}
 
+	const getReceipt = async (txhash: string, setGameResult: Dispatch<SetStateAction<any>>) => {
+		console.log('waiting forreceipt')
+		try {
+			const receipt = await jsonprovider.getTransactionReceipt(txhash)
+			console.log(receipt)
+		} catch (err: any) {
+			console.log(err)
+		}
+		setTimeout(async () => {
+			try {
+				const receipt = await jsonprovider.waitForTransaction(txhash, 1, 10000)
+				console.log(receipt)
+				const decodedLogs = quais.utils.defaultAbiCoder.decode(
+					['string', 'address', 'uint', 'bool', 'bool'],
+					receipt.logs[0].data
+				)
+				console.log(decodedLogs)
+				setGameResult(decodedLogs)
+				dispatch({ type: 'SET_IS_FLIPPING', payload: { flipping: false, choice: false, bet: 0 } })
+			} catch (err: any) {
+				console.log(err)
+			}
+		}, 3000)
+		console.log('receipt received')
+	}
+
 	// play calls the contract's Play function and sets the tx hash in state
 	// takes in heads (boolean), bet (number), and setIsFlipStatusModalOpen (function)
 	// handles opening of the FlipStatusModal
@@ -66,21 +92,22 @@ function useContract() {
 				method: 'eth_sendTransaction',
 				params: [tx],
 			})
-			.then((tx: any, err: Error) => {
-				if (err) {
-					console.log('TX Error:', err)
-				} else {
-					console.log('TX:', tx)
-					dispatch({ type: 'SET_TX_HASH', payload: tx })
+			.then((res: any, err: Error) => {
+				if (typeof res === 'string') {
+					dispatch({ type: 'SET_TX_HASH', payload: res })
 					dispatch({
 						type: 'SET_IS_FLIPPING',
 						payload: { flipping: true, choice: heads, bet: bet },
 					})
 					setIsFlipStatusModalOpen(true)
+				} else if (res.code === 4001) {
+					console.log('Transaction Rejected')
+				} else {
+					console.log('Transaction Error:', err)
 				}
 			})
 			.catch((err: Error) => {
-				console.log('TX Error:', err)
+				console.log('Transaction Error:', err)
 			})
 	}
 
@@ -88,32 +115,8 @@ function useContract() {
 		getGameCount,
 		getBalance,
 		play,
+		getReceipt,
 	}
 }
 
 export default useContract
-
-//   const filter = contract.filters.Status(
-//     null,
-//     accounts[0].addr,
-//     null,
-//     null,
-//     null
-//   );
-//   contract.on(filter, (msg, player, prize, winner, heads) => {
-//     const pri = ethers.utils.formatEther(prize.toNumber());
-//     const gameResult = {
-//       message: msg,
-//       player: player,
-//       prize: pri,
-//       winner: winner,
-//       heads: heads,
-//     };
-//     console.log("Game Result:", gameResult);
-//     getTableData();
-//     dispatch({
-//       type: "SET_IS_FLIPPING",
-//       payload: { flipping: false, choice: false, bet: 0 },
-//     });
-//     dispatch({ type: "GAME_RESULT", payload: gameResult });
-//   });

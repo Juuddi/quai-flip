@@ -24,6 +24,17 @@ export const RPCURLs = {
 		'zone-2-1': 'https://rpc.hydra2.colosseum.quaiscan.io',
 		'zone-2-2': 'https://rpc.hydra3.colosseum.quaiscan.io',
 	},
+	'ws-local': {
+		'zone-0-0': 'ws://localhost:8611',
+		'zone-0-1': 'ws://localhost:8643',
+		'zone-0-2': 'ws://localhost:8675',
+		'zone-1-0': 'ws://localhost:8613',
+		'zone-1-1': 'ws://localhost:8645',
+		'zone-1-2': 'ws://localhost:8677',
+		'zone-2-0': 'ws://localhost:8615',
+		'zone-2-1': 'ws://localhost:8647',
+		'zone-2-2': 'ws://localhost:8679',
+	},
 }
 
 // Explorer URLs for transaction links

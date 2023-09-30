@@ -1,15 +1,30 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { GlobalStateContext, GlobalDispatchContext } from '../utils/store'
 import { Modal, Frame } from '@react95/core'
 import { Systray304 } from '@react95/icons'
 import { CoinSpin } from '../components/functional/GameComponents'
 import { getExplorerURL } from '../utils/helpers'
+import useContract from '../hooks/useContract'
 
 const FlipStatusModal = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const state = useContext(GlobalStateContext)
-	const { isFlipping, gameResult, txHash, account } = state
+	const { isFlipping, txHash, account } = state
 	const dispatch = useContext(GlobalDispatchContext)
 	const explorerURL = getExplorerURL(account.shard)
+	const [gameResult, setGameResult] = useState({
+		message: '',
+		player: '',
+		prize: '',
+		winner: '',
+		heads: false,
+	})
+	const { getReceipt } = useContract()
+
+	useEffect(() => {
+		console.log('In Use Effect')
+		getReceipt(txHash, setGameResult)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	var winner = ''
 	var choice = ''

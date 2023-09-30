@@ -11,8 +11,6 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
 	const { play } = useContract()
 
 	const HandleFlip = () => {
-		setIsFlipStatusModalOpen(true)
-		// let choice = isHeads ? 'true' : 'false'
 		play(isHeads, bet, setIsFlipStatusModalOpen)
 	}
 
@@ -104,6 +102,7 @@ export const FlipStats = () => {
 
 	useEffect(() => {
 		getGameCountAndBalance()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	return (
 		<Fieldset legend='Details'>

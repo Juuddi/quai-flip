@@ -8,6 +8,7 @@ interface StateData {
 	window: any
 	provider: any
 	rpcUrl: string
+	wsUrl: string
 	signer: any
 	contract: any
 	contractAddress: string
@@ -29,6 +30,7 @@ const typeStateMap = {
 	SET_WINDOW: 'window',
 	SET_PROVIDER: 'provider',
 	SET_RPC_URL: 'rpcUrl',
+	SET_WS_URL: 'wsUrl',
 	SET_SIGNER: 'signer',
 	SET_CONTRACT: 'contract',
 	SET_CONTRACT_ADDRESS: 'contractAddress',
@@ -50,6 +52,7 @@ const initialState = {
 	window: null,
 	provider: null,
 	rpcUrl: '',
+	wsUrl: '',
 	signer: null,
 	contract: null,
 	contractAddress: '',
