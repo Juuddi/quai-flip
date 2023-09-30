@@ -3,7 +3,7 @@ name: build image
 on:
   push:
     branches:
-      - ci-cd
+      - main
 
 jobs:
   build:
