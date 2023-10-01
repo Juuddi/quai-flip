@@ -3,16 +3,22 @@ import { GlobalStateContext } from '../src/utils/store'
 import DesktopHome from '../src/views/DesktopHome'
 import DesktopLogin from '../src/views/DesktopLogin'
 
-export default function Home({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) {
-	useEffect(() => {
-		const theme: any = localStorage.getItem('theme')
-		if (theme !== undefined) {
-			setTheme(theme)
-		} else {
-			setTheme('win95')
-		}
-	})
+export default function Home({
+  setTheme,
+}: {
+  setTheme: Dispatch<SetStateAction<string>>
+}) {
+  useEffect(() => {
+    const theme: any = localStorage.getItem('theme')
+    if (theme !== undefined) {
+      setTheme(theme)
+    } else {
+      setTheme('win95')
+    }
+  })
 
-	const { isConnected } = useContext(GlobalStateContext)
-	return <>{isConnected ? <DesktopHome setTheme={setTheme} /> : <DesktopLogin />}</>
+  const { isConnected } = useContext(GlobalStateContext)
+  return (
+    <>{isConnected ? <DesktopHome setTheme={setTheme} /> : <DesktopLogin />}</>
+  )
 }

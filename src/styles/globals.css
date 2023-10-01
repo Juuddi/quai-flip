@@ -1,455 +1,460 @@
 .text-gradient {
-	--bg-size: 400%;
-	--color-one: hsl(15 90% 55%);
-	--color-two: hsl(40 95% 55%);
-	background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
-		var(--bg-size) 100%;
-	color: transparent;
-	background-clip: text;
-	-webkit-background-clip: text;
-	animation: move-bg 8s infinite linear;
+  --bg-size: 400%;
+  --color-one: hsl(15 90% 55%);
+  --color-two: hsl(40 95% 55%);
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 8s infinite linear;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.boujee-text {
-		animation: move-bg 8s linear infinite;
-	}
-	@keyframes move-bg {
-		to {
-			background-position: var(--bg-size) 0;
-		}
-	}
+  .boujee-text {
+    animation: move-bg 8s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
 }
 
 /* Quai Flip Modal */
 
 .main-wrapper {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	gap: 10px;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  height: 100%;
 }
 
 /* Flip Table Modal */
 .game-details-wrapper {
-	display: flex;
-	flex-direction: column;
-	width: 700px;
-	gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  gap: 10px;
 }
 
 .flip-stats-wrapper {
-	padding: 5px;
+  padding: 5px;
 }
 
 .flip-stats {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 /* Flip Status Modal */
 .spinWrapper {
-	width: 100%;
-	height: 100%;
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	grid-template-rows: 1fr 0.5fr;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: 1fr 0.5fr;
 }
 
 .spinText {
-	padding-top: 5px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
+  padding-top: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .gameResultWrapper {
-	width: 100%;
-	height: 100%;
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	grid-template-rows: 0.5fr 1fr;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: 0.5fr 1fr;
 }
 
 .gameResult {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	flex-direction: column;
-	padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding: 0px;
 }
 
 /* Copy Components */
 
 .copy-welcome-wrapper {
-	display: flex;
-	flex-direction: column;
-	padding: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
 
 .copy-footer-wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .copy-flip-breakdown {
-	display: flex;
+  display: flex;
 }
 
 .column-copy {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	justify-content: space-evenly;
-	padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 16px;
 }
 
 .explainer-text {
-	color: black;
-	font-size: 12px;
-	margin: 0px;
-	line-height: 1.4;
+  color: black;
+  font-size: 12px;
+  margin: 0px;
+  line-height: 1.4;
 }
 
 .github-icon:hover {
-	color: 'gray';
+  color: 'gray';
 }
 
 /* Desktop Buttons */
 .desktop-icons-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	width: 10%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 10%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
 .desktop-icon-img {
-	width: 45px;
-	height: 45px;
+  width: 45px;
+  height: 45px;
 }
 
 .desktop-icon-button {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 0;
-	margin: 0;
-	background-color: transparent;
-	border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .desktop-icon-text {
-	font-size: 12px;
-	font-weight: bold;
-	color: #fff;
-	margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 10px;
 }
 
 /* Login Box */
 .login-outer-frame {
-	padding: 2px;
+  padding: 2px;
 }
 
 .login-inner-frame {
-	width: 100%;
-	height: 100%;
-	padding: 1px;
-	display: flex;
-	flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-banner {
-	margin-top: -2px;
+  margin-top: -2px;
 }
 
 .login-content-wrapper {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 100%;
-	gap: 5px;
-	padding-top: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+  padding-top: 4px;
 }
 
 .login-main-wrapper {
-	display: grid;
-	grid-template-columns: 0.5fr 1.3fr 0.6fr;
-	width: 100%;
-	padding-bottom: 20px;
-	padding-top: 20px;
+  display: grid;
+  grid-template-columns: 0.5fr 1.3fr 0.6fr;
+  width: 100%;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .icon-spacer {
-	padding: 20px;
+  padding: 20px;
 }
 
 .login-info-wrapper {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-info {
-	display: grid;
-	grid-template-columns: 0.4fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	justify-content: center;
-	align-items: center;
-	padding-top: 10px;
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
 }
 
 .login-button-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
-	gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
 }
 
 .login-button {
-	height: 25px;
-	width: 80px;
+  height: 25px;
+  width: 80px;
 }
 
 .login-loading-wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 100%;
-	padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 0px;
 }
 
 .login-loading {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Game Table */
 .grid-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	border-bottom: 1px solid #545454;
-	text-align: center;
-	padding-top: 5px;
-	padding-bottom: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #545454;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .table-wrapper {
-	display: grid;
-	width: 100%;
+  display: grid;
+  width: 100%;
 }
 
 .title-row-wrapper {
-	width: 100%;
-	border-bottom: 2px solid black;
+  width: 100%;
+  border-bottom: 2px solid black;
 }
 
 .title-row {
-	width: 97.3%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	text-align: center;
+  width: 97.3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
 }
 
 .table {
-	width: 100%;
-	max-height: 120px;
-	overflow-y: scroll;
+  width: 100%;
+  max-height: 120px;
+  overflow-y: scroll;
 }
 
 /* Game Components */
 
 .game-choice-selection-wrapper {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	padding: 10px 0px;
-	gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px 0px;
+  gap: 30px;
 }
 
 .input-button-wrapper {
-	display: flex;
-	justify-content: space-between;
-	padding: 10px 0px;
-	gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  gap: 10px;
 }
 
 .input-button {
-	width: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-input-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	width: 100%;
-	align-items: center;
-	padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
 }
 
 .game-bet-input {
-	width: 70%;
-	height: 25px;
-	border: 1px solid #000;
+  width: 70%;
+  height: 25px;
+  border: 1px solid #000;
 }
 
 .game-bet-button {
-	width: 70%;
-	font-size: 30px;
+  width: 70%;
+  font-size: 30px;
 }
 
 .coin-spin-wrapper {
-	display: flex;
-	height: 100%;
-	width: 100%;
-	align-items: center;
-	justify-content: center;
-	padding: 5px 0px;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
 }
 
 /* Alert */
 .alert-outer-frame {
-	padding: 2px;
+  padding: 2px;
 }
 
 .alert-inner-frame {
-	height: 100%;
-	width: 100%;
-	padding: 1px;
-	display: flex;
-	flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 .alert-content-wrapper {
-	display: flex;
-	flex-direction: row;
-	padding: 10px;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .alert-icon-wrapper {
-	padding: 10px;
+  padding: 10px;
 }
 
 .alert-icon {
-	height: 35px;
-	width: 35px;
+  height: 35px;
+  width: 35px;
 }
 
 .alert-text-wrapper {
-	padding-right: 20px;
-	padding-left: 0px;
-	width: 100%;
+  padding-right: 20px;
+  padding-left: 0px;
+  width: 100%;
 }
 
 .alert-button-wrapper {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	padding-bottom: 15px;
-	margin-top: -10px;
-	text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 15px;
+  margin-top: -10px;
+  text-decoration: none;
 }
 
 .alert-button {
-	text-decoration: none;
-	color: black;
-	font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 /* Account Frame */
 .frame {
-	padding: 15px;
+  padding: 15px;
 }
 
 .frame-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-	padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
 }
 
 .connected {
-	display: flex;
-	background-color: rgb(19, 168, 19);
-	padding: 2px 12px;
-	width: fit-content;
-	border: 3px double rgb(232, 232, 232);
-	width: 100%;
-	justify-content: center;
+  display: flex;
+  background-color: rgb(19, 168, 19);
+  padding: 2px 12px;
+  width: fit-content;
+  border: 3px double rgb(232, 232, 232);
+  width: 100%;
+  justify-content: center;
 }
 
 .connected-text {
-	color: white;
-	margin: 4px 0px;
-	font-size: 13px;
+  color: white;
+  margin: 4px 0px;
+  font-size: 13px;
 }
 
 .column-wrapper {
-	display: flex;
-	flex-direction: row;
-	gap: 4px;
-	justify-content: space-evenly;
-	width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .column {
-	display: flex;
-	flex-direction: column;
-	border: 3px double rgb(232, 232, 232);
-	width: 100%;
-	justify-content: space-evenly;
-	background-color: rgb(128, 132, 128);
-	padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 3px double rgb(232, 232, 232);
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: rgb(128, 132, 128);
+  padding: 10px;
 }
 
 .row-wrapper {
-	display: flex;
-	gap: 4px;
-	color: rgb(225, 225, 225);
+  display: flex;
+  gap: 4px;
+  color: rgb(225, 225, 225);
 }
 
 .address-text {
-	color: white;
-	max-width: 110px;
-	height: 10px;
+  color: white;
+  max-width: 110px;
+  height: 10px;
 }
 
 .shard-text {
-	color: white;
-	text-transform: capitalize;
+  color: white;
+  text-transform: capitalize;
 }
 
 /* Desktop Login */
 .login-view-wrapper {
-	width: 100vw;
-	height: 100vh;
-	align-items: center;
-	justify-content: center;
-	display: flex;
-	background-size: cover;
-	flex-direction: column;
-	gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-size: cover;
+  flex-direction: column;
+  gap: 10px;
 }
