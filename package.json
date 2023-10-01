@@ -6,7 +6,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@react95/core": "^6.1.2",
@@ -30,6 +31,7 @@
 		"autoprefixer": "10.4.14",
 		"eslint": "8.47.0",
 		"eslint-config-next": "13.4.13",
+		"husky": "^8.0.3",
 		"typescript": "5.1.6"
 	}
 }
