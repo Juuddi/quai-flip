@@ -18,14 +18,14 @@ const CustomGlobalStyle = createGlobalStyle`
 `
 
 export default function App({ Component, pageProps }: AppProps) {
-	const [theme, setTheme] = useState<ThemeName>()
-	return (
-		<StateProvider>
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				<CustomGlobalStyle />
-				<Component {...{ pageProps, setTheme }} />
-			</ThemeProvider>
-		</StateProvider>
-	)
+  const [theme, setTheme] = useState<ThemeName>()
+  return (
+    <StateProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <CustomGlobalStyle />
+        <Component {...{ pageProps, setTheme }} />
+      </ThemeProvider>
+    </StateProvider>
+  )
 }
