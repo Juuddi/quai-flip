@@ -18,11 +18,11 @@ interface StateData {
   gameHistory: any
   isFlipping: { choice: boolean; flipping: boolean; bet: number }
   gameResult: {
-    choice: boolean
+    message: string
+    player: string
+    prize: number
     heads: boolean
     winner: boolean
-    message: string
-    prize: number
   }
   txHash: string
   isPelagus: boolean
@@ -68,11 +68,11 @@ const initialState = {
   gameHistory: [],
   isFlipping: { choice: false, flipping: false, bet: 0 },
   gameResult: {
-    choice: false,
+    message: '',
+    player: '',
+    prize: 0,
     heads: false,
     winner: false,
-    message: '',
-    prize: 0,
   },
   txHash: '',
   isPelagus: false,

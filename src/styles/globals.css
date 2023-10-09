@@ -46,6 +46,8 @@
 
 .flip-stats-wrapper {
   padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .flip-stats {

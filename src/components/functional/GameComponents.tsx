@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import Image from 'next/image'
 import { Input, Fieldset, Checkbox, Button } from '@react95/core'
 import { GlobalStateContext } from '../../utils/store'
+import { reducetextShowSmallLength } from '../../utils/helpers'
 import useContract from '../../hooks/useContract'
 
 export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
@@ -11,7 +12,9 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
   const { play } = useContract()
 
   const HandleFlip = () => {
+    setIsFlipStatusModalOpen(false)
     play(isHeads, bet, setIsFlipStatusModalOpen)
+    console.log('IsHeads', isHeads)
   }
 
   const HandleCheck = (key: any) => {
@@ -88,29 +91,37 @@ export const CoinSpin = () => {
 }
 
 export const FlipStats = () => {
-  const { gameCount, contractBalance } = useContext(GlobalStateContext)
-  const { getGameCount, getBalance } = useContract()
-  async function getGameCountAndBalance() {
-    const gameCount = await getGameCount()
-    const balance = await getBalance()
-    console.log(' gameCount: ', gameCount, ' balance: ', balance)
-    return { gameCount, balance }
-  }
+  const { contractAddress, account } = useContext(GlobalStateContext)
+  const { fetchContractInfo } = useContract()
+  const [contractInfo, setContractInfo] = useState({
+    gameCount: undefined,
+    balance: undefined,
+  })
 
   useEffect(() => {
-    getGameCountAndBalance()
+    const fetchData = async () => {
+      try {
+        const info = await fetchContractInfo()
+        setContractInfo(info)
+      } catch (error) {
+        console.error('Failed to fetch contract info:', error)
+      }
+    }
+
+    fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [account])
   return (
-    <Fieldset legend='Details'>
+    <Fieldset legend='Contract Details'>
       <div className='flip-stats-wrapper'>
         <div className='flip-stats'>
           <p>
-            Coin Flips: <strong>{gameCount}</strong>
+            Total Flips: <strong>{contractInfo.gameCount}</strong>
           </p>
           <p>
-            Contract Balance: <strong>{contractBalance} QUAI</strong>
+            Balance: <strong>{contractInfo.balance} QUAI</strong>
           </p>
+          <p>Address: {reducetextShowSmallLength(contractAddress)}</p>
         </div>
       </div>
     </Fieldset>

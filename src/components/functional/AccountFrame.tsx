@@ -23,7 +23,7 @@ const AccountFrame = () => {
             addr: accounts[0],
             shard: getShardFromAddress(accounts[0]),
           }
-          const rpcUrl = getRPCURL(account.shard, 'local')
+          const rpcUrl = getRPCURL(account.shard, 'remote')
           const wsUrl = getRPCURL(account.shard, 'ws-local')
           const contractAddress = getContractAddressFromShard(account.shard)
           dispatch({

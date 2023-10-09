@@ -16,15 +16,15 @@ const FlipStatusModal = ({
   const [gameResult, setGameResult] = useState({
     message: '',
     player: '',
-    prize: '',
-    winner: '',
+    prize: 0,
     heads: false,
+    winner: false,
   })
   const { getReceipt } = useContract()
 
   useEffect(() => {
-    console.log('In Use Effect')
     getReceipt(txHash, setGameResult)
+    console.log('Game Result: ', gameResult)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -81,7 +81,7 @@ const FlipStatusModal = ({
                 {isFlipping.bet} QUAI bet on {choice} submitted.
               </h1>
               <a
-                href={`${explorerURL}/${txHash}`}
+                href={`${explorerURL}/tx/${txHash}`}
                 target='_blank'
                 rel='noreferrer'
               >
