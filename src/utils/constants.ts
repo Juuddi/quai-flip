@@ -33,7 +33,7 @@ export const RPCURLs = {
     'zone-1-2': 'ws://localhost:8677',
     'zone-2-0': 'ws://localhost:8615',
     'zone-2-1': 'ws://localhost:8647',
-    'zone-2-2': 'ws://192.168.4.23:8679',
+    'zone-2-2': 'ws://localhost:8679',
   },
 }
 
