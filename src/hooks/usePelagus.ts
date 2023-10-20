@@ -4,7 +4,6 @@ import { getShardFromAddress } from 'quais/lib/utils'
 import {
   getContractAddressFromShard,
   getRPCURL,
-  getWSURL,
 } from '../utils/helpers'
 
 const usePelagus = () => {
@@ -28,10 +27,6 @@ const usePelagus = () => {
         dispatch({
           type: 'SET_RPC_URL',
           payload: getRPCURL(account.shard, 'remote'),
-        })
-        dispatch({
-          type: 'SET_WS_URL',
-          payload: getWSURL(account.shard, 'ws-remote'),
         })
       })
       .catch((err: Error) => {
@@ -64,10 +59,6 @@ const usePelagus = () => {
             dispatch({
               type: 'SET_RPC_URL',
               payload: getRPCURL(account.shard, 'remote'),
-            })
-            dispatch({
-              type: 'SET_WS_URL',
-              payload: getWSURL(account.shard, 'remote'),
             })
           }
         })

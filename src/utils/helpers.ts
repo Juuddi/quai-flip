@@ -14,11 +14,6 @@ export const getRPCURL = (shardName: string, environment: string) => {
   return env[shardName as keyof typeof env]
 }
 
-export const getWSURL = (shardName: string, environment: string) => {
-  const env = RPCURLs[environment as keyof typeof RPCURLs]
-  return env[shardName as keyof typeof env].replace('http', 'ws')
-}
-
 export const getContractAddressFromShard = (shardName: string) => {
   return contractAddresses[shardName as keyof typeof contractAddresses]
 }

@@ -7,14 +7,31 @@ import useContract from '../../hooks/useContract'
 
 export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
   const [isHeads, setIsHeads] = useState(false)
-  const [bet, setBet] = useState(0.0001)
+  const [bet, setBet] = useState(0.1)
+  const [betInvalid, setBetInvalid] = useState(false)
   const betAmounts = [0.1, 0.5, 1, 5]
   const { play } = useContract()
 
   const HandleFlip = () => {
+    if (betInvalid) {
+      return
+    }
     setIsFlipStatusModalOpen(false)
     play(isHeads, bet, setIsFlipStatusModalOpen)
     console.log('IsHeads', isHeads)
+  }
+
+  const handleBet = (bet: any) => {
+    if (bet < 0.1) {
+      console.log('Bet is less than 0.1')
+      setBetInvalid(true)
+    } else if (bet > 20) {
+      console.log('Bet is greater than 20')
+      setBetInvalid(true)
+    } else {
+      setBetInvalid(false)
+    }
+    setBet(bet)
   }
 
   const HandleCheck = (key: any) => {
@@ -63,35 +80,28 @@ export const Bet = ({ setIsFlipStatusModalOpen }: FlipStatusModalProps) => {
             placeholder='0.1'
             className='game-bet-input'
             value={bet}
-            onChange={(e: any) => setBet(e.target.value)}
-            min='0'
+            onChange={(e: any) => handleBet(e.target.value)}
+            min='0.1'
+            max='20'
             step='0.1'
           />
           <Button className='game-bet-button' onClick={HandleFlip}>
-            <p className='text-gradient'>Flip</p>
+            <p>Flip</p>
           </Button>
+          {betInvalid && (
+            <p className='bet-invalid-text'>
+              Please enter a bet between 0.1 and 20 Quai
+            </p>
+          )}
         </div>
       </Fieldset>
     </>
   )
 }
 
-export const CoinSpin = () => {
-  return (
-    <div className='coin-spin-wrapper'>
-      <Image
-        src='/assets/CoinSpin.gif'
-        alt='Coin Spinning'
-        width={60}
-        height={60}
-        priority={true}
-      />
-    </div>
-  )
-}
-
 export const FlipStats = () => {
-  const { contractAddress, account } = useContext(GlobalStateContext)
+  const { contractAddress, account, isFlipping } =
+    useContext(GlobalStateContext)
   const { fetchContractInfo } = useContract()
   const [contractInfo, setContractInfo] = useState({
     gameCount: undefined,
@@ -107,10 +117,9 @@ export const FlipStats = () => {
         console.error('Failed to fetch contract info:', error)
       }
     }
-
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account])
+  }, [account, isFlipping.flipping])
   return (
     <Fieldset legend='Contract Details'>
       <div className='flip-stats-wrapper'>

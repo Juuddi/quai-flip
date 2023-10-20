@@ -17,8 +17,7 @@ contract Coin is Ownable {
         address indexed player,
         uint amount,
         bool winner,
-        bool heads,
-        bool choice
+        bool heads
     );
 
     function Play(bool _playerChoice) public payable {
@@ -45,7 +44,7 @@ contract Coin is Ownable {
 
         totalFlips = totalFlips.add(1); // Increment the totalFlips counter
 
-        emit Status(resultMessage, msg.sender, msg.value, isWinner, isHeads, _playerChoice);
+        emit Status(resultMessage, msg.sender, msg.value, isWinner, isHeads);
     }
 
     function flipCoin() private view returns(bool) {

@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from 'react'
-import { GlobalStateContext, GlobalDispatchContext } from '../utils/store'
+import { GlobalStateContext } from '../utils/store'
 import { Modal, Frame } from '@react95/core'
 import { Systray304 } from '@react95/icons'
-import { CoinSpin } from '../components/functional/GameComponents'
 import { getExplorerURL } from '../utils/helpers'
+import GifSwitcher from '../components/style/CoinTakeOff'
 import useContract from '../hooks/useContract'
+import Image from 'next/image'
 
 const FlipStatusModal = ({
   setIsFlipStatusModalOpen,
 }: FlipStatusModalProps) => {
+  console.log('Render')
   const state = useContext(GlobalStateContext)
   const { isFlipping, txHash, account } = state
-  const dispatch = useContext(GlobalDispatchContext)
   const explorerURL = getExplorerURL(account.shard)
   const [gameResult, setGameResult] = useState({
     message: '',
@@ -24,7 +25,7 @@ const FlipStatusModal = ({
 
   useEffect(() => {
     getReceipt(txHash, setGameResult)
-    console.log('Game Result: ', gameResult)
+    console.log('UseEffect')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -36,7 +37,7 @@ const FlipStatusModal = ({
   } else {
     choice = 'Tails'
   }
-  if (gameResult) {
+  if (gameResult.message !== null) {
     if (gameResult.winner) {
       winner = 'won'
     } else {
@@ -49,20 +50,12 @@ const FlipStatusModal = ({
     }
   }
 
-  const HandleClose = () => {
-    setIsFlipStatusModalOpen(false)
-    dispatch({
-      type: 'SET_IS_FLIPPING',
-      payload: { flipping: false, choice: null, bet: null },
-    })
-  }
-
   return (
     <Modal
       title='Coin Flip'
       icon={<Systray304 variant='32x32_4' />}
       width='280'
-      closeModal={() => HandleClose()}
+      closeModal={() => setIsFlipStatusModalOpen(false)}
       style={{ left: '63%', top: '6%' }}
     >
       <Frame
@@ -75,7 +68,7 @@ const FlipStatusModal = ({
       >
         {isFlipping.flipping ? (
           <div className='spinWrapper'>
-            <CoinSpin />
+            <GifSwitcher />
             <div className='spinText'>
               <h1>
                 {isFlipping.bet} QUAI bet on {choice} submitted.
@@ -90,15 +83,47 @@ const FlipStatusModal = ({
             </div>
           </div>
         ) : (
-          <div className='gameResultWrapper'>
-            <CoinSpin />
-            <div className='gameResult'>
-              <h1>The coin landed on {heads}.</h1>
-              <h1>{gameResult.message}</h1>
-              <h1>
-                You {winner} <strong>{gameResult.prize} QUAI.</strong>
-              </h1>
-            </div>
+          <div>
+            {gameResult.message !== null ? (
+              <div className='gameResultWrapper'>
+                {heads ? (
+                  <div className='coin-spin-wrapper'>
+                    <video
+                      src='/assets/tailslanding.mp4'
+                      style={{ width: "60px", height: "60px" }}
+                    />
+                  </div>
+                ) : (
+                  <div className='coin-spin-wrapper'>
+                    <video
+                      src='/assets/tailslanding.mp4'
+                      style={{ width: "60px", height: "60px" }}
+                    />
+                  </div>
+                )}
+                <div className='gameResult'>
+                  <h1>The coin landed on {heads}.</h1>
+                  <h1>{gameResult.message}</h1>
+                  <h1>
+                    You {winner} <strong>{gameResult.prize} QUAI.</strong>
+                  </h1>
+                </div>
+              </div>
+            ) : (
+              <div className='txRejectWrapper'>
+                <div style={{ color: "red"}}>Transaction Rejected.</div>
+                <div>
+                  <a
+                    href={`${explorerURL}/tx/${txHash}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    View in explorer
+                  </a>{' '}
+                  for more details.
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Frame>

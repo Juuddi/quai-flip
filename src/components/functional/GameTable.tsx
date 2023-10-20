@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react'
 import { GlobalStateContext } from '../../utils/store'
-import { ethers } from 'ethers'
 import { Frame } from '@react95/core'
 import useContract from '../../hooks/useContract'
 
@@ -31,8 +30,8 @@ const GameTable = () => {
     // 	return gameHistory.map((game: game, index: number) => {
     // 		// Handle data formatting
     // 		const player = game.player.substring(0, 4) + ' ... ' + game.player.substring(37, 42)
-    // 		const bet = ethers.utils.formatEther(Number(game.bet))
-    // 		const prize = ethers.utils.formatEther(Number(game.prize))
+    // 		const bet = quais.utils.formatEther(Number(game.bet))
+    // 		const prize = quais.utils.formatEther(Number(game.prize))
     // 		let winner = ''
     // 		if (game.winner) {
     // 			winner = 'Won'
