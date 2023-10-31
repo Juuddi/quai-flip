@@ -1,0 +1,46 @@
+name: Build and Deploy to GCP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.5.1'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Docker image
+        run: docker build -t quai-flip .
+
+      - name: Setup GCloud CLI
+        uses: google-github-actions/setup-gcloud@v0.2.1
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: quaiflip
+          export_default_credentials: true
+
+      - name: Push Docker image to GCR
+        run: |
+          IMAGE_NAME="quai-flip-build"
+          docker tag quai-flip:latest "gcr.io/quaiflip/quai-flip-build:latest"
+          docker push "gcr.io/quaiflip/${IMAGE_NAME}:latest"
+
+      - name: Deploy to GCP Compute Engine
+        run: |
+          # SSH into the GCP instance and run commands
+          gcloud compute ssh instance-1 --command "\
+            docker pull gcr.io/quaiflip/quai-flip-build:latest && \
+            docker stop $(docker ps -q) && \
+            docker run -d -p 3000:3000 gcr.io/quaiflip/quai-flip-build:latest"
