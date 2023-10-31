@@ -5,9 +5,11 @@ import { Frame, Button, Input } from '@react95/core'
 import { Mprserv120 } from '@react95/icons'
 import usePelagus from '../../hooks/usePelagus'
 import ModalTitle from '../style/ModalTitle'
+import { useContext } from 'react'
+import { GlobalStateContext } from '../../utils/store'
 
 const LoginBox = () => {
-  // const { provider, isPelagus } = useContext(MetaStateContext)
+  const { provider, isPelagus } = useContext(GlobalStateContext)
   // eslint-disable-next-line no-unused-vars
   const { requestAccounts } = usePelagus()
   return (
@@ -37,7 +39,7 @@ const LoginBox = () => {
             <div className='login-button-wrapper'>
               <Button
                 className='login-button'
-                // disabled={!provider || !isPelagus}
+                disabled={!provider || !isPelagus}
                 onClick={requestAccounts}
               >
                 Connect

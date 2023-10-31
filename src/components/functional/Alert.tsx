@@ -13,7 +13,8 @@ const Alert = () => {
           </div>
           <div className='alert-text-wrapper'>
             This app uses Pelagus to interact with Quai Network. Please install
-            the Pelagus extension and enable the it to continue.
+            the Pelagus extension and enable it as your default extension wallet
+            to continue.
           </div>
         </div>
         <div className='alert-button-wrapper'>

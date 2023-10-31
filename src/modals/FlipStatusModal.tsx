@@ -5,7 +5,6 @@ import { Systray304 } from '@react95/icons'
 import { getExplorerURL } from '../utils/helpers'
 import GifSwitcher from '../components/style/CoinTakeOff'
 import useContract from '../hooks/useContract'
-import Image from 'next/image'
 
 const FlipStatusModal = ({
   setIsFlipStatusModalOpen,
@@ -90,14 +89,14 @@ const FlipStatusModal = ({
                   <div className='coin-spin-wrapper'>
                     <video
                       src='/assets/tailslanding.mp4'
-                      style={{ width: "60px", height: "60px" }}
+                      style={{ width: '60px', height: '60px' }}
                     />
                   </div>
                 ) : (
                   <div className='coin-spin-wrapper'>
                     <video
                       src='/assets/tailslanding.mp4'
-                      style={{ width: "60px", height: "60px" }}
+                      style={{ width: '60px', height: '60px' }}
                     />
                   </div>
                 )}
@@ -111,7 +110,7 @@ const FlipStatusModal = ({
               </div>
             ) : (
               <div className='txRejectWrapper'>
-                <div style={{ color: "red"}}>Transaction Rejected.</div>
+                <div style={{ color: 'red' }}>Transaction Rejected.</div>
                 <div>
                   <a
                     href={`${explorerURL}/tx/${txHash}`}

@@ -1,10 +1,7 @@
 import { useContext } from 'react'
 import { GlobalDispatchContext } from '../utils/store'
 import { getShardFromAddress } from 'quais/lib/utils'
-import {
-  getContractAddressFromShard,
-  getRPCURL,
-} from '../utils/helpers'
+import { getContractAddressFromShard, getRPCURL } from '../utils/helpers'
 
 const usePelagus = () => {
   const dispatch = useContext(GlobalDispatchContext)

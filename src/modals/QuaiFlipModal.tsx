@@ -1,9 +1,6 @@
 import { Frame, Modal } from '@react95/core'
 import { Freecell1 } from '@react95/icons'
-import {
-  Bet,
-  FlipStats,
-} from '../components/functional/GameComponents'
+import { Bet, FlipStats } from '../components/functional/GameComponents'
 
 const QuaiFlipModal = ({
   setIsModalOpen,
