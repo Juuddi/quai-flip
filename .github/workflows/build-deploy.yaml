@@ -34,8 +34,8 @@ jobs:
       - name: Push Docker image to GCR
         run: |
           IMAGE_NAME="quai-flip-build"
-          docker tag quai-flip:latest "gcr.io/quaiflip/quai-flip-build:latest"
-          docker push "gcr.io/quaiflip/${IMAGE_NAME}:latest"
+          docker tag quai-flip-build:latest "gcr.io/quaiflip/quai-flip-build:latest"
+          docker push "gcr.io/quaiflip/quai-flip-build:latest"
 
       - name: Deploy to GCP Compute Engine
         run: |
