@@ -1,12 +1,11 @@
 import { Dispatch, useContext, SetStateAction } from 'react'
+import { pollFor } from 'quais-polling'
 import { quais } from 'quais'
-import { ethers } from 'ethers'
 import { GlobalDispatchContext, GlobalStateContext } from '../utils/store'
 import { contractABI } from '../utils/contract'
 
 function useContract() {
-  const { rpcUrl, contractAddress, account, wsUrl } =
-    useContext(GlobalStateContext)
+  const { rpcUrl, contractAddress, account } = useContext(GlobalStateContext)
   const dispatch = useContext(GlobalDispatchContext)
 
   // set contract and provider
@@ -55,32 +54,56 @@ function useContract() {
     txhash: string,
     setGameResult: Dispatch<SetStateAction<any>>,
   ) => {
-    console.log('waiting forreceipt')
-    try {
-      const receipt = await jsonprovider.getTransactionReceipt(txhash)
-      console.log(receipt)
-    } catch (err: any) {
-      console.log(err)
-    }
-    setTimeout(async () => {
-      try {
-        const receipt = await jsonprovider.waitForTransaction(txhash, 1, 10000)
+    await pollFor(jsonprovider, 'getTransactionReceipt', [txhash], 1.5, 1)
+      .then((receipt: any) => {
         console.log(receipt)
+        if (receipt.logs[0]?.data === undefined) {
+          dispatch({
+            type: 'SET_IS_FLIPPING',
+            payload: { flipping: false, choice: false, bet: 0 },
+          })
+          setGameResult({
+            message: null,
+            player: null,
+            prize: null,
+            winner: null,
+            heads: null,
+          })
+          return
+        }
         const decodedLogs = quais.utils.defaultAbiCoder.decode(
-          ['string', 'address', 'uint', 'bool', 'bool'],
+          ['string', 'uint', 'bool', 'bool'],
           receipt.logs[0].data,
         )
-        console.log(decodedLogs)
-        setGameResult(decodedLogs)
+        const playerAddress = quais.utils.getAddress(
+          receipt.logs[0].topics[0].slice(-40),
+        )
+        setGameResult({
+          message: decodedLogs[0],
+          player: playerAddress,
+          prize: quais.utils.formatEther(decodedLogs[1]._hex),
+          winner: decodedLogs[2],
+          heads: decodedLogs[3],
+        })
         dispatch({
           type: 'SET_IS_FLIPPING',
           payload: { flipping: false, choice: false, bet: 0 },
         })
-      } catch (err: any) {
-        console.log(err)
-      }
-    }, 3000)
-    console.log('receipt received')
+      })
+      .catch((err: Error) => {
+        console.error(err)
+        dispatch({
+          type: 'SET_IS_FLIPPING',
+          payload: { flipping: false, choice: false, bet: 0 },
+        })
+        setGameResult({
+          message: null,
+          player: null,
+          prize: null,
+          winner: null,
+          heads: null,
+        })
+      })
   }
 
   // play calls the contract's Play function and sets the tx hash in state
@@ -91,7 +114,8 @@ function useContract() {
     bet: number,
     setIsFlipStatusModalOpen: any,
   ) => {
-    const value = ethers.utils.parseEther(bet.toString())._hex
+    console.log('Heads', heads)
+    const value = quais.utils.parseEther(bet.toString())._hex
     const transactionData = await contract.populateTransaction.Play(heads, {
       value: value,
     })
@@ -126,11 +150,18 @@ function useContract() {
       })
   }
 
+  const fetchContractInfo = async () => {
+    const balance = await getBalance()
+    const gameCount = await getGameCount()
+    return { balance, gameCount }
+  }
+
   return {
     getGameCount,
     getBalance,
     play,
     getReceipt,
+    fetchContractInfo,
   }
 }
 

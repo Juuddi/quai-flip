@@ -6,7 +6,7 @@ const ThemeModal = ({ setIsThemeModalOpen, setTheme }: ThemeModalProps) => {
   const handleThemeChange = (theme: string) => {
     setTheme(theme)
     localStorage.clear()
-    localStorage.setItem('theme', theme)
+    localStorage.setItem('win95theme', theme)
   }
 
   return (

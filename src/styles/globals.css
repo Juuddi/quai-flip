@@ -46,6 +46,8 @@
 
 .flip-stats-wrapper {
   padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .flip-stats {
@@ -79,6 +81,14 @@
   justify-content: center;
   align-items: center;
   grid-template-rows: 0.5fr 1fr;
+}
+
+.txRejectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .gameResult {
@@ -320,6 +330,13 @@
 .game-bet-button {
   width: 70%;
   font-size: 30px;
+}
+
+.bet-invalid-text {
+  color: red;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .coin-spin-wrapper {

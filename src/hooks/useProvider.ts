@@ -13,7 +13,7 @@ function useProvider() {
     // detect window.ethereum
     const detectedProvider = await window?.ethereum
     // detect if provider is Pelagus
-    const isPelagus = detectedProvider.providerInfo.label
+    const isPelagus = detectedProvider?.isPelagus
     if (detectedProvider) {
       dispatch({ type: 'SET_WINDOW', payload: window })
       dispatch({ type: 'SET_PROVIDER', payload: detectedProvider })

@@ -8,7 +8,6 @@ interface StateData {
   window: any
   provider: any
   rpcUrl: string
-  wsUrl: string
   signer: any
   contract: any
   contractAddress: string
@@ -18,11 +17,11 @@ interface StateData {
   gameHistory: any
   isFlipping: { choice: boolean; flipping: boolean; bet: number }
   gameResult: {
-    choice: boolean
-    heads: boolean
-    winner: boolean
-    message: string
-    prize: number
+    message: any
+    player: any
+    amount: any
+    winner: any
+    heads: any
   }
   txHash: string
   isPelagus: boolean
@@ -36,7 +35,6 @@ const typeStateMap = {
   SET_WINDOW: 'window',
   SET_PROVIDER: 'provider',
   SET_RPC_URL: 'rpcUrl',
-  SET_WS_URL: 'wsUrl',
   SET_SIGNER: 'signer',
   SET_CONTRACT: 'contract',
   SET_CONTRACT_ADDRESS: 'contractAddress',
@@ -58,7 +56,6 @@ const initialState = {
   window: null,
   provider: null,
   rpcUrl: '',
-  wsUrl: '',
   signer: null,
   contract: null,
   contractAddress: '',
@@ -68,11 +65,11 @@ const initialState = {
   gameHistory: [],
   isFlipping: { choice: false, flipping: false, bet: 0 },
   gameResult: {
-    choice: false,
-    heads: false,
-    winner: false,
     message: '',
-    prize: 0,
+    player: '',
+    amount: 0,
+    winner: false,
+    heads: false,
   },
   txHash: '',
   isPelagus: false,

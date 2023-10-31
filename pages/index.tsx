@@ -9,7 +9,7 @@ export default function Home({
   setTheme: Dispatch<SetStateAction<string>>
 }) {
   useEffect(() => {
-    const theme: any = localStorage.getItem('theme')
+    const theme: any = localStorage.getItem('win95theme')
     if (theme !== undefined) {
       setTheme(theme)
     } else {

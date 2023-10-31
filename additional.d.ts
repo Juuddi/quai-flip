@@ -119,11 +119,4 @@ declare global {
     | 'lilacRoseDark'
     | 'violetDark'
     | undefined
-
-  interface game {
-    player: string
-    bet: string
-    prize: string
-    winner: boolean
-  }
 }

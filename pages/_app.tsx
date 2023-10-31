@@ -20,12 +20,12 @@ const CustomGlobalStyle = createGlobalStyle`
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<ThemeName>()
   return (
-    <StateProvider>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <StateProvider>
         <GlobalStyle />
         <CustomGlobalStyle />
         <Component {...{ pageProps, setTheme }} />
-      </ThemeProvider>
-    </StateProvider>
+      </StateProvider>
+    </ThemeProvider>
   )
 }

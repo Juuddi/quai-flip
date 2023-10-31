@@ -1,11 +1,7 @@
 import { useContext } from 'react'
 import { GlobalDispatchContext } from '../utils/store'
 import { getShardFromAddress } from 'quais/lib/utils'
-import {
-  getContractAddressFromShard,
-  getRPCURL,
-  getWSURL,
-} from '../utils/helpers'
+import { getContractAddressFromShard, getRPCURL } from '../utils/helpers'
 
 const usePelagus = () => {
   const dispatch = useContext(GlobalDispatchContext)
@@ -27,11 +23,7 @@ const usePelagus = () => {
         dispatch({ type: 'SET_CONTRACT_ADDRESS', payload: contractAddress })
         dispatch({
           type: 'SET_RPC_URL',
-          payload: getRPCURL(account.shard, 'local'),
-        })
-        dispatch({
-          type: 'SET_WS_URL',
-          payload: getWSURL(account.shard, 'ws-local'),
+          payload: getRPCURL(account.shard, 'remote'),
         })
       })
       .catch((err: Error) => {
@@ -63,11 +55,7 @@ const usePelagus = () => {
             })
             dispatch({
               type: 'SET_RPC_URL',
-              payload: getRPCURL(account.shard, 'local'),
-            })
-            dispatch({
-              type: 'SET_WS_URL',
-              payload: getWSURL(account.shard, 'ws-local'),
+              payload: getRPCURL(account.shard, 'remote'),
             })
           }
         })

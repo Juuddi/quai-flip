@@ -1,10 +1,6 @@
 import { Frame, Modal } from '@react95/core'
 import { Freecell1 } from '@react95/icons'
-import {
-  Bet,
-  CoinSpin,
-  FlipStats,
-} from '../components/functional/GameComponents'
+import { Bet, FlipStats } from '../components/functional/GameComponents'
 
 const QuaiFlipModal = ({
   setIsModalOpen,
@@ -19,7 +15,6 @@ const QuaiFlipModal = ({
     >
       <Frame w='400px' boxShadow='in' p='10px'>
         <div className='main-wrapper'>
-          <CoinSpin />
           <Bet {...{ setIsFlipStatusModalOpen }} />
           <FlipStats />
         </div>
