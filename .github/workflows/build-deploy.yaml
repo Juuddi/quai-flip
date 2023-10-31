@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Docker image
-        run: docker build -t quai-flip .
+        run: docker build -t quai-flip-build .
 
       - name: Setup GCloud CLI
         uses: google-github-actions/setup-gcloud@v0.2.1
