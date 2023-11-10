@@ -87,17 +87,15 @@ const FlipStatusModal = ({
               <div className='gameResultWrapper'>
                 {heads ? (
                   <div className='coin-spin-wrapper'>
-                    <video
-                      src='/assets/tailslanding.mp4'
-                      style={{ width: '60px', height: '60px' }}
-                    />
+                    <video width='60px' height='60px' autoPlay muted>
+                      <source src='/assets/heads_landing.webm' />
+                    </video>
                   </div>
                 ) : (
                   <div className='coin-spin-wrapper'>
-                    <video
-                      src='/assets/tailslanding.mp4'
-                      style={{ width: '60px', height: '60px' }}
-                    />
+                    <video width='60px' height='60px' autoPlay muted>
+                      <source src='/assets/tails_landing.webm' />
+                    </video>
                   </div>
                 )}
                 <div className='gameResult'>

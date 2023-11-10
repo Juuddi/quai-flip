@@ -128,7 +128,7 @@ function useContract() {
 
     await window.ethereum
       .request({
-        method: 'eth_sendTransaction',
+        method: 'quai_sendTransaction',
         params: [tx],
       })
       .then((res: any, err: Error) => {
