@@ -31,16 +31,16 @@ jobs:
           project_id: quaiflip
           export_default_credentials: true
 
-      - name: Push Docker image to GCR
-        run: |
-          IMAGE_NAME="quai-flip-build"
-          docker tag quai-flip-build:latest "gcr.io/quaiflip/quai-flip-build:latest"
-          docker push "gcr.io/quaiflip/quai-flip-build:latest"
+      - name: Tag Docker image for Artifact Registry
+        run: docker tag quai-flip-build:latest artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest
+
+      - name: Push Docker image to Artifact Registry
+        run: docker push artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest
 
       - name: Deploy to GCP Compute Engine
         run: |
           # SSH into the GCP instance and run commands
           gcloud compute ssh instance-1 --command "\
-            docker pull gcr.io/quaiflip/quai-flip-build:latest && \
+            docker pull artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest && \
             docker stop $(docker ps -q) && \
-            docker run -d -p 3000:3000 gcr.io/quaiflip/quai-flip-build:latest"
+            docker run -d -p 3000:3000 artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest"

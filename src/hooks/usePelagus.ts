@@ -11,7 +11,7 @@ const usePelagus = () => {
   // if user denies, a 4001 error is printed to the console and nothing happens on the user side
   const requestAccounts = async () => {
     await window.ethereum
-      .request({ method: 'eth_requestAccounts' })
+      .request({ method: 'quai_requestAccounts' })
       .then((accounts: Array<string>) => {
         const account = {
           addr: accounts[0],
@@ -39,7 +39,7 @@ const usePelagus = () => {
     try {
       let account
       await window.ethereum
-        .request({ method: 'eth_accounts' })
+        .request({ method: 'quai_accounts' })
         .then((accounts: Array<string>) => {
           if (accounts.length !== 0) {
             const account = {
