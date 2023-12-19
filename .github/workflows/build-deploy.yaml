@@ -33,7 +33,7 @@ jobs:
         run: docker build -t ${{ env.IMAGE_NAME }} .
 
       - name: Setup GCloud CLI
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0.2.1
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ env.PROJECT_ID }}
