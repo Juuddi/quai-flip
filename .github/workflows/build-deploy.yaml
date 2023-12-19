@@ -32,10 +32,10 @@ jobs:
           export_default_credentials: true
 
       - name: Tag Docker image for Artifact Registry
-        run: docker tag quai-flip-build:latest artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest
+        run: docker tag quai-flip-build:latest us-west4-docker.pkg.dev/quaiflip/quai-flip-build/quai-flip-build:latest
 
       - name: Push Docker image to Artifact Registry
-        run: docker push artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest
+        run: docker push us-west4-docker.pkg.dev/quaiflip/quai-flip-build/quai-flip-build:latest
 
       - name: Deploy to GCP Compute Engine
         run: |
