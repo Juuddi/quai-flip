@@ -8,6 +8,7 @@ on:
 env:
   PROJECT_ID: quaiflip
   REGION: us-west4
+  ZONE: us-west4-b
   REPOSITORY: quai-flip-build
   IMAGE_NAME: quai-flip-build
   GAR_HOST: us-west4-docker.pkg.dev
@@ -50,7 +51,7 @@ jobs:
 
       - name: Deploy to GCP Compute Engine
         run: |
-          gcloud compute ssh instance-1 --zone YOUR_INSTANCE_ZONE --command "\
+          gcloud compute ssh instance-1 --zone ${{ env.ZONE }} --command "\
             sudo apt-get update && \
             sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && \
