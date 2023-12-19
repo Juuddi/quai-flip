@@ -51,7 +51,7 @@ jobs:
       - name: Deploy to GCP Compute Engine
         run: |
           # SSH into the GCP instance and run commands
-          gcloud compute ssh instance-1 --command "\
+          gcloud compute ssh instance-1 --zone us-west4-b --command "\
             docker pull ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }} && \
             docker stop $(docker ps -q) && \
             docker run -d -p 3000:3000 ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
