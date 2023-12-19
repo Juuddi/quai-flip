@@ -5,6 +5,14 @@ on:
     branches:
       - main
 
+env:
+  PROJECT_ID: quaiflip
+  REGION: us-west4
+  REPOSITORY: quai-flip-build
+  IMAGE_NAME: quai-flip-build
+  GAR_HOST: us-west4-docker.pkg.dev
+  GAR_PATH: us-west4-docker.pkg.dev/quaiflip/quai-flip-build
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,25 +30,29 @@ jobs:
         run: npm install
 
       - name: Build Docker image
-        run: docker build -t quai-flip-build .
+        run: docker build -t ${{ env.IMAGE_NAME }} .
 
       - name: Setup GCloud CLI
-        uses: google-github-actions/setup-gcloud@v0.2.1
+        uses: google-github-actions/setup-gcloud@master
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: quaiflip
+          project_id: ${{ env.PROJECT_ID }}
           export_default_credentials: true
 
+      - name: Configure Docker for GCloud
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" | docker login -u _json_key --password-stdin https://${{ env.GAR_HOST }}
+
       - name: Tag Docker image for Artifact Registry
-        run: docker tag quai-flip-build:latest us-west4-docker.pkg.dev/quaiflip/quai-flip-build/quai-flip-build:latest
+        run: docker tag ${{ env.IMAGE_NAME }}:${{ github.sha }} ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Push Docker image to Artifact Registry
-        run: docker push us-west4-docker.pkg.dev/quaiflip/quai-flip-build/quai-flip-build:latest
+        run: docker push ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy to GCP Compute Engine
         run: |
           # SSH into the GCP instance and run commands
           gcloud compute ssh instance-1 --command "\
-            docker pull artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest && \
+            docker pull ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }} && \
             docker stop $(docker ps -q) && \
-            docker run -d -p 3000:3000 artifactregistry.googleapis.com/quaiflip/quai-flip-build:latest"
+            docker run -d -p 3000:3000 ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
