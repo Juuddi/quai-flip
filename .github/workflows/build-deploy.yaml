@@ -59,6 +59,7 @@ jobs:
             sudo apt-get update && \
             sudo apt-get install -y docker-ce docker-ce-cli containerd.io && \
             sudo systemctl start docker && \
+            gcloud auth print-access-token | sudo docker login -u oauth2accesstoken --password-stdin us-west4-docker.pkg.dev && \
             sudo docker pull ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }} && \
             sudo docker stop $(sudo docker ps -q) || true && \
             sudo docker run -d -p 3000:3000 ${{ env.GAR_PATH }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
